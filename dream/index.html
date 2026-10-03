@@ -86,7 +86,7 @@ body.solmyeong {
 
   --accent: #c84f46;
   --accent-light: #df675e;
-  --accent-rgb: 200, 79, 70;
+  --accent-rgb: 200,79,70;
 
   --line: rgba(220,110,100,.17);
   --line-soft: rgba(255,255,255,.065);
@@ -105,7 +105,7 @@ body.podohaeil {
 
   --accent: #5779e8;
   --accent-light: #7792ef;
-  --accent-rgb: 87, 121, 232;
+  --accent-rgb: 87,121,232;
 
   --line: rgba(120,150,237,.18);
   --line-soft: rgba(255,255,255,.065);
@@ -132,11 +132,6 @@ body::before {
       rgba(var(--accent-rgb), .12),
       transparent 27%
     ),
-    radial-gradient(
-      circle at 7% 55%,
-      rgba(var(--accent-rgb), .055),
-      transparent 32%
-    ),
     linear-gradient(
       140deg,
       var(--bg-soft),
@@ -155,11 +150,9 @@ body::before {
 
   z-index: 50;
 
-  width: 100%;
-
   border-bottom: 1px solid var(--line);
 
-  background: rgba(6,6,8,.80);
+  background: rgba(6,6,8,.82);
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -173,10 +166,35 @@ body::before {
 
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 
-  gap: 34px;
+  gap: 30px;
 }
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+.home-link {
+  color: var(--dim);
+
+  font-size: 10px;
+  font-weight: 650;
+
+  letter-spacing: .13em;
+
+  transition: color .2s ease;
+}
+
+.home-link:hover {
+  color: var(--accent-light);
+}
+
+
+/* =========================================================
+   HEADER RIGHT
+========================================================= */
 
 .header-right {
   display: flex;
@@ -238,7 +256,6 @@ body::before {
 
 .mode-switch {
   display: flex;
-  align-items: center;
 
   padding: 3px;
 
@@ -297,15 +314,15 @@ body::before {
 
 
 /* =========================================================
-   HERO
+   HEAD
 ========================================================= */
 
 .dream-head {
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1fr)
-    minmax(280px, .42fr);
+    minmax(0,1fr)
+    minmax(280px,.42fr);
 
   gap: 70px;
 
@@ -330,15 +347,13 @@ body::before {
 .page-title {
   margin: 0;
 
-  font-size: clamp(60px, 7vw, 100px);
+  font-size:
+    clamp(60px,7vw,100px);
+
   font-weight: 300;
 
   line-height: .9;
   letter-spacing: -.065em;
-}
-
-.dream-side {
-  padding-bottom: 5px;
 }
 
 .pair-name {
@@ -361,7 +376,7 @@ body::before {
 
 
 /* =========================================================
-   DESCRIPTION
+   INFO
 ========================================================= */
 
 .gallery-info {
@@ -376,12 +391,12 @@ body::before {
   color: var(--dim);
 
   font-size: 10px;
-
-  letter-spacing: .07em;
 }
 
 .gallery-count {
   color: var(--accent);
+
+  letter-spacing: .08em;
 }
 
 
@@ -390,26 +405,32 @@ body::before {
 ========================================================= */
 
 .gallery {
-  margin-top: 62px;
+  margin-top: 58px;
 
-  columns: 2;
-  column-gap: 18px;
+  display: grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap: 18px;
 }
+
+
+/* =========================================================
+   SQUARE THUMBNAIL
+========================================================= */
 
 .dream-card {
   position: relative;
 
   width: 100%;
+  aspect-ratio: 1 / 1;
 
   display: block;
 
-  margin: 0 0 18px;
-
-  padding: 0;
-
   overflow: hidden;
 
-  break-inside: avoid;
+  padding: 0;
 
   border: 1px solid var(--line);
   border-radius: 20px;
@@ -418,50 +439,49 @@ body::before {
 
   cursor: pointer;
 
-  text-align: left;
-
   transition:
-    transform .28s ease,
-    border-color .28s ease,
-    background .28s ease;
+    transform .25s ease,
+    border-color .25s ease;
 }
 
 .dream-card:hover {
   transform: translateY(-3px);
 
   border-color:
-    rgba(var(--accent-rgb), .38);
-
-  background: var(--panel-hover);
+    rgba(var(--accent-rgb),.38);
 }
 
 .image-box {
-  position: relative;
-
-  width: 100%;
+  position: absolute;
+  inset: 0;
 
   overflow: hidden;
-
-  background: #050505;
 }
 
 .image-box img {
   width: 100%;
-  height: auto;
+  height: 100%;
 
   display: block;
+
+  /*
+    썸네일만 정사각형에 맞춰 자름.
+    팝업 원본에는 영향 없음.
+  */
+  object-fit: cover;
+  object-position: center;
 
   filter:
     saturate(.93)
     brightness(.91);
 
   transition:
-    transform .45s ease,
-    filter .35s ease;
+    transform .4s ease,
+    filter .3s ease;
 }
 
 .dream-card:hover img {
-  transform: scale(1.012);
+  transform: scale(1.025);
 
   filter:
     saturate(1)
@@ -469,45 +489,47 @@ body::before {
 }
 
 
-/* subtle image fade */
-
-.image-box::after {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      0deg,
-      rgba(0,0,0,.17),
-      transparent 28%
-    );
-}
-
-
 /* =========================================================
-   CARD INFO
+   THUMBNAIL INFO
 ========================================================= */
 
-.card-info {
-  min-height: 58px;
+.card-overlay {
+  position: absolute;
 
-  padding: 14px 15px 15px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 2;
+
+  padding:
+    50px
+    16px
+    15px;
 
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
 
   gap: 20px;
 
-  border-top: 1px solid var(--line-soft);
+  background:
+    linear-gradient(
+      0deg,
+      rgba(0,0,0,.72),
+      transparent
+    );
+}
+
+.card-left {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
 }
 
 .card-index {
-  color: var(--dim);
+  color: rgba(255,255,255,.52);
 
   font-size: 9px;
 
@@ -515,20 +537,20 @@ body::before {
 }
 
 .card-credit {
-  color: var(--muted);
+  color: rgba(255,255,255,.88);
 
   font-size: 10px;
-  font-weight: 550;
+  font-weight: 600;
 }
 
 .card-arrow {
-  color: var(--accent);
+  color: var(--accent-light);
 
-  font-size: 13px;
+  font-size: 14px;
 
   opacity: 0;
 
-  transform: translate(-5px, 3px);
+  transform: translate(-5px,3px);
 
   transition:
     opacity .2s ease,
@@ -538,22 +560,7 @@ body::before {
 .dream-card:hover .card-arrow {
   opacity: 1;
 
-  transform: translate(0, 0);
-}
-
-
-/* =========================================================
-   EMPTY / LOADING
-========================================================= */
-
-.gallery-empty {
-  padding: 90px 0;
-
-  color: var(--muted);
-
-  text-align: center;
-
-  font-size: 13px;
+  transform: translate(0,0);
 }
 
 
@@ -593,7 +600,7 @@ body::before {
 
   padding: 32px;
 
-  background: rgba(0,0,0,.91);
+  background: rgba(0,0,0,.92);
 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -606,19 +613,29 @@ body::before {
 .popup-inner {
   position: relative;
 
-  max-width: min(1200px, 92vw);
+  max-width: min(1200px,92vw);
   max-height: 92vh;
 }
+
+
+/*
+  팝업은 원본 비율 그대로.
+*/
 
 .popup-image {
   display: block;
 
-  max-width: 100%;
+  width: auto;
+  height: auto;
+
+  max-width: 92vw;
   max-height: 84vh;
 
   object-fit: contain;
 
-  border: 1px solid rgba(255,255,255,.11);
+  border: 1px solid rgba(255,255,255,.10);
+
+  background: #050505;
 }
 
 .popup-bottom {
@@ -670,11 +687,12 @@ body::before {
    MOBILE
 ========================================================= */
 
-@media (max-width: 900px) {
+@media(max-width:900px) {
 
   .header-inner,
   .page {
-    width: min(100% - 36px, 1340px);
+    width:
+      min(100% - 36px,1340px);
   }
 
   .header-inner {
@@ -684,9 +702,7 @@ body::before {
   }
 
   .header-right {
-    width: 100%;
-
-    justify-content: space-between;
+    gap: 18px;
   }
 
   .main-nav {
@@ -696,6 +712,10 @@ body::before {
   .main-nav a {
     padding: 5px 0 7px;
 
+    font-size: 9px;
+  }
+
+  .home-link {
     font-size: 9px;
   }
 
@@ -709,27 +729,18 @@ body::before {
     gap: 28px;
   }
 
-  .dream-side {
-    padding: 0;
-  }
-
-  .gallery {
-    margin-top: 46px;
-  }
-
 }
 
 
-@media (max-width: 650px) {
+@media(max-width:650px) {
 
-  .header-right {
-    gap: 15px;
+  .header-inner {
+    align-items: flex-start;
   }
 
-  .mode-btn {
-    padding: 6px 10px;
-
-    font-size: 9px;
+  .header-right {
+    flex-direction: column-reverse;
+    align-items: flex-end;
   }
 
   .page-title {
@@ -737,50 +748,18 @@ body::before {
   }
 
   .gallery {
-    columns: 1;
+    grid-template-columns: 1fr;
   }
 
   .gallery-info {
-    align-items: flex-start;
     flex-direction: column;
+    align-items: flex-start;
 
     gap: 7px;
   }
 
 }
 
-
-@media (max-width: 480px) {
-
-  .header-right {
-    flex-direction: column-reverse;
-    align-items: flex-end;
-  }
-
-  .main-nav {
-    align-self: flex-end;
-  }
-
-  .mode-switch {
-    align-self: flex-end;
-  }
-
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    transition-duration: .01ms !important;
-  }
-
-}
 </style>
 </head>
 
@@ -788,21 +767,24 @@ body::before {
 <body class="solmyeong">
 
 
-<!-- =======================================================
-     HEADER
-======================================================= -->
-
 <header class="site-header">
 
   <div class="header-inner">
 
+
+    <a
+      class="home-link"
+      id="homeLink"
+      href="../?mode=solmyeong"
+    >
+      ← HOME
+    </a>
+
+
     <div class="header-right">
 
 
-      <nav
-        class="main-nav"
-        aria-label="페이지 메뉴"
-      >
+      <nav class="main-nav">
 
         <a
           id="mainLink"
@@ -829,10 +811,7 @@ body::before {
       </nav>
 
 
-      <div
-        class="mode-switch"
-        aria-label="모드 전환"
-      >
+      <div class="mode-switch">
 
         <button
           type="button"
@@ -860,10 +839,6 @@ body::before {
 
 
 
-<!-- =======================================================
-     PAGE
-======================================================= -->
-
 <main class="page">
 
 
@@ -885,7 +860,7 @@ body::before {
     </div>
 
 
-    <div class="dream-side">
+    <div>
 
       <div
         class="pair-name"
@@ -927,7 +902,6 @@ body::before {
   <section
     class="gallery"
     id="gallery"
-    aria-label="드림 일러스트"
   ></section>
 
 
@@ -943,9 +917,7 @@ body::before {
 
 
 
-<!-- =======================================================
-     POPUP
-======================================================= -->
+<!-- POPUP -->
 
 <div
   class="popup"
@@ -997,10 +969,6 @@ body::before {
   "use strict";
 
 
-  /* =======================================================
-     DATA
-  ======================================================= */
-
   const DATA = {
 
     solmyeong: {
@@ -1029,28 +997,43 @@ body::before {
       images: [
 
         {
-          src: "../pictures/8.png",
-          artist: "도련님"
+          src:
+            "../pictures/8.png",
+
+          artist:
+            "도련님"
         },
 
         {
-          src: "../pictures/9.png",
-          artist: "넬레님"
+          src:
+            "../pictures/9.png",
+
+          artist:
+            "넬레님"
         },
 
         {
-          src: "../pictures/10.png",
-          artist: "알수없음님"
+          src:
+            "../pictures/10.png",
+
+          artist:
+            "알수없음님"
         },
 
         {
-          src: "../pictures/11.png",
-          artist: "알수없음님"
+          src:
+            "../pictures/11.png",
+
+          artist:
+            "알수없음님"
         },
 
         {
-          src: "../pictures/12.png",
-          artist: "도련님"
+          src:
+            "../pictures/12.png",
+
+          artist:
+            "도련님"
         }
 
       ]
@@ -1084,23 +1067,35 @@ body::before {
       images: [
 
         {
-          src: "../pictures/13.png",
-          artist: "알수없음님"
+          src:
+            "../pictures/13.png",
+
+          artist:
+            "알수없음님"
         },
 
         {
-          src: "../pictures/14.png",
-          artist: "알수없음님"
+          src:
+            "../pictures/14.png",
+
+          artist:
+            "알수없음님"
         },
 
         {
-          src: "../pictures/15.png",
-          artist: "도련님"
+          src:
+            "../pictures/15.png",
+
+          artist:
+            "도련님"
         },
 
         {
-          src: "../pictures/16.png",
-          artist: "하제님"
+          src:
+            "../pictures/16.png",
+
+          artist:
+            "하제님"
         }
 
       ]
@@ -1110,12 +1105,13 @@ body::before {
   };
 
 
-  /* =======================================================
-     ELEMENTS
-  ======================================================= */
-
   const body =
     document.body;
+
+  const homeLink =
+    document.getElementById(
+      "homeLink"
+    );
 
   const mainLink =
     document.getElementById(
@@ -1131,13 +1127,6 @@ body::before {
     document.getElementById(
       "dreamLink"
     );
-
-  const modeButtons =
-    [
-      ...document.querySelectorAll(
-        "[data-mode]"
-      )
-    ];
 
   const pageLabel =
     document.getElementById(
@@ -1169,8 +1158,13 @@ body::before {
       "footerLabel"
     );
 
+  const modeButtons =
+    [
+      ...document.querySelectorAll(
+        "[data-mode]"
+      )
+    ];
 
-  /* popup */
 
   const popup =
     document.getElementById(
@@ -1202,10 +1196,6 @@ body::before {
     getInitialMode();
 
 
-  /* =======================================================
-     INITIAL MODE
-  ======================================================= */
-
   function getInitialMode() {
 
     const params =
@@ -1230,7 +1220,6 @@ body::before {
           "naru-current-mode"
         );
 
-
       if (DATA[saved]) {
         return saved;
       }
@@ -1242,22 +1231,20 @@ body::before {
   }
 
 
-  /* =======================================================
-     GALLERY
-  ======================================================= */
-
-  function renderGallery(images) {
+  function renderGallery(
+    images
+  ) {
 
     gallery.innerHTML =
       "";
 
 
     images.forEach(
-      (item, index) => {
+      (item,index) => {
 
         const number =
           String(index + 1)
-            .padStart(2, "0");
+            .padStart(2,"0");
 
 
         const card =
@@ -1283,6 +1270,7 @@ body::before {
 
 
         card.innerHTML = `
+
           <div class="image-box">
 
             <img
@@ -1293,21 +1281,28 @@ body::before {
 
           </div>
 
-          <div class="card-info">
 
-            <span class="card-index">
-              ${number}
-            </span>
+          <div class="card-overlay">
 
-            <span class="card-credit">
-              © ${item.artist}
-            </span>
+            <div class="card-left">
+
+              <span class="card-index">
+                ${number}
+              </span>
+
+              <span class="card-credit">
+                © ${item.artist}
+              </span>
+
+            </div>
+
 
             <span class="card-arrow">
               ↗
             </span>
 
           </div>
+
         `;
 
 
@@ -1321,11 +1316,9 @@ body::before {
   }
 
 
-  /* =======================================================
-     MODE
-  ======================================================= */
-
-  function renderMode(mode) {
+  function renderMode(
+    mode
+  ) {
 
     if (!DATA[mode]) {
       mode = "solmyeong";
@@ -1340,8 +1333,6 @@ body::before {
       DATA[mode];
 
 
-    /* body */
-
     body.classList.remove(
       "solmyeong",
       "podohaeil"
@@ -1352,13 +1343,9 @@ body::before {
     );
 
 
-    /* browser tab */
-
     document.title =
       data.title;
 
-
-    /* heading */
 
     pageLabel.textContent =
       data.label;
@@ -1373,13 +1360,12 @@ body::before {
       data.label;
 
 
-    /* count */
-
     galleryCount.textContent =
-      `${String(data.images.length).padStart(2, "0")} ILLUSTRATIONS`;
+      `${String(data.images.length).padStart(2,"0")} ILLUSTRATIONS`;
 
 
-    /* links */
+    homeLink.href =
+      `../?mode=${mode}`;
 
     mainLink.href =
       `../main/?theme=${mode}`;
@@ -1390,8 +1376,6 @@ body::before {
     dreamLink.href =
       `../dream/?theme=${mode}`;
 
-
-    /* switch */
 
     modeButtons.forEach(
       button => {
@@ -1405,14 +1389,10 @@ body::before {
     );
 
 
-    /* gallery */
-
     renderGallery(
       data.images
     );
 
-
-    /* save */
 
     try {
 
@@ -1423,8 +1403,6 @@ body::before {
 
     } catch (error) {}
 
-
-    /* url */
 
     const url =
       new URL(
@@ -1449,10 +1427,6 @@ body::before {
   }
 
 
-  /* =======================================================
-     SWITCH
-  ======================================================= */
-
   modeButtons.forEach(
     button => {
 
@@ -1460,22 +1434,11 @@ body::before {
         "click",
         () => {
 
-          const mode =
-            button.dataset.mode;
-
-
-          if (
-            mode === currentMode
-          ) {
-            return;
-          }
-
-
           closePopup();
 
 
           renderMode(
-            mode
+            button.dataset.mode
           );
 
 
@@ -1491,9 +1454,7 @@ body::before {
   );
 
 
-  /* =======================================================
-     PROFILE PASSWORD
-  ======================================================= */
+  /* PROFILE PASSWORD */
 
   profileLink.addEventListener(
     "click",
@@ -1518,6 +1479,7 @@ body::before {
             profileLink.href;
 
           return;
+
         }
 
       } catch (error) {}
@@ -1529,9 +1491,7 @@ body::before {
         );
 
 
-      if (
-        input === null
-      ) {
+      if (input === null) {
         return;
       }
 
@@ -1567,15 +1527,21 @@ body::before {
   );
 
 
-  /* =======================================================
+  /* =========================================================
      POPUP
-  ======================================================= */
+  ========================================================= */
 
   function openPopup(
     src,
     artist,
     number
   ) {
+
+    /*
+      src 자체를 그대로 넣으므로
+      썸네일의 crop과 무관하게
+      원본 이미지 비율로 표시됨.
+    */
 
     popupImage.src =
       src;
@@ -1589,6 +1555,7 @@ body::before {
       number
         ? `IMAGE / ${number}`
         : "";
+
 
     popup.classList.add(
       "open"
@@ -1688,10 +1655,6 @@ body::before {
     }
   );
 
-
-  /* =======================================================
-     START
-  ======================================================= */
 
   renderMode(
     currentMode
