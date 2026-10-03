@@ -8,10 +8,6 @@
 <title>솔명 · DREAM</title>
 
 <style>
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -171,11 +167,6 @@ body::before {
   gap: 30px;
 }
 
-
-/* =========================================================
-   HOME
-========================================================= */
-
 .home-link {
   color: var(--dim);
 
@@ -190,11 +181,6 @@ body::before {
 .home-link:hover {
   color: var(--accent-light);
 }
-
-
-/* =========================================================
-   HEADER RIGHT
-========================================================= */
 
 .header-right {
   display: flex;
@@ -415,11 +401,6 @@ body::before {
   gap: 18px;
 }
 
-
-/* =========================================================
-   SQUARE THUMBNAIL
-========================================================= */
-
 .dream-card {
   position: relative;
 
@@ -464,10 +445,6 @@ body::before {
 
   display: block;
 
-  /*
-    썸네일만 정사각형에 맞춰 자름.
-    팝업 원본에는 영향 없음.
-  */
   object-fit: cover;
   object-position: center;
 
@@ -487,11 +464,6 @@ body::before {
     saturate(1)
     brightness(.98);
 }
-
-
-/* =========================================================
-   THUMBNAIL INFO
-========================================================= */
 
 .card-overlay {
   position: absolute;
@@ -617,11 +589,6 @@ body::before {
   max-height: 92vh;
 }
 
-
-/*
-  팝업은 원본 비율 그대로.
-*/
-
 .popup-image {
   display: block;
 
@@ -731,7 +698,6 @@ body::before {
 
 }
 
-
 @media(max-width:650px) {
 
   .header-inner {
@@ -759,7 +725,6 @@ body::before {
   }
 
 }
-
 </style>
 </head>
 
@@ -771,7 +736,6 @@ body::before {
 
   <div class="header-inner">
 
-
     <a
       class="home-link"
       id="homeLink"
@@ -780,9 +744,7 @@ body::before {
       ← HOME
     </a>
 
-
     <div class="header-right">
-
 
       <nav class="main-nav">
 
@@ -809,7 +771,6 @@ body::before {
         </a>
 
       </nav>
-
 
       <div class="mode-switch">
 
@@ -859,7 +820,6 @@ body::before {
 
     </div>
 
-
     <div>
 
       <div
@@ -892,7 +852,7 @@ body::before {
       class="gallery-count"
       id="galleryCount"
     >
-      05 ILLUSTRATIONS
+      08 ILLUSTRATIONS
     </div>
 
   </div>
@@ -916,8 +876,6 @@ body::before {
 </main>
 
 
-
-<!-- POPUP -->
 
 <div
   class="popup"
@@ -997,43 +955,43 @@ body::before {
       images: [
 
         {
-          src:
-            "../pictures/8.png",
-
-          artist:
-            "도련님"
+          src: "../pictures/8.png",
+          artist: "도련님"
         },
 
         {
-          src:
-            "../pictures/9.png",
-
-          artist:
-            "넬레님"
+          src: "../pictures/9.png",
+          artist: "넬레님"
         },
 
         {
-          src:
-            "../pictures/10.png",
-
-          artist:
-            "알수없음님"
+          src: "../pictures/10.png",
+          artist: "알수없음님"
         },
 
         {
-          src:
-            "../pictures/11.png",
-
-          artist:
-            "알수없음님"
+          src: "../pictures/12.png",
+          artist: "도련님"
         },
 
         {
-          src:
-            "../pictures/12.png",
+          src: "../pictures/31.jpg",
+          artist: "파란개님"
+        },
 
-          artist:
-            "도련님"
+        {
+          src: "../pictures/32.png",
+          artist: "하제님"
+        },
+
+        {
+          src: "../pictures/33.png",
+          artist: "흑발대주주닙"
+        },
+
+        {
+          src: "../pictures/35.png",
+          artist: "mee님"
         }
 
       ]
@@ -1067,35 +1025,28 @@ body::before {
       images: [
 
         {
-          src:
-            "../pictures/13.png",
-
-          artist:
-            "알수없음님"
+          src: "../pictures/14.png",
+          artist: "알수없음님"
         },
 
         {
-          src:
-            "../pictures/14.png",
-
-          artist:
-            "알수없음님"
+          src: "../pictures/15.png",
+          artist: "도련님"
         },
 
         {
-          src:
-            "../pictures/15.png",
-
-          artist:
-            "도련님"
+          src: "../pictures/16.png",
+          artist: "하제님"
         },
 
         {
-          src:
-            "../pictures/16.png",
+          src: "../pictures/30.png",
+          artist: "MELM님"
+        },
 
-          artist:
-            "하제님"
+        {
+          src: "../pictures/34.png",
+          artist: "MELM님"
         }
 
       ]
@@ -1109,87 +1060,52 @@ body::before {
     document.body;
 
   const homeLink =
-    document.getElementById(
-      "homeLink"
-    );
+    document.getElementById("homeLink");
 
   const mainLink =
-    document.getElementById(
-      "mainLink"
-    );
+    document.getElementById("mainLink");
 
   const profileLink =
-    document.getElementById(
-      "profileLink"
-    );
+    document.getElementById("profileLink");
 
   const dreamLink =
-    document.getElementById(
-      "dreamLink"
-    );
+    document.getElementById("dreamLink");
 
   const pageLabel =
-    document.getElementById(
-      "pageLabel"
-    );
+    document.getElementById("pageLabel");
 
   const pairName =
-    document.getElementById(
-      "pairName"
-    );
+    document.getElementById("pairName");
 
   const catchphrase =
-    document.getElementById(
-      "catchphrase"
-    );
+    document.getElementById("catchphrase");
 
   const gallery =
-    document.getElementById(
-      "gallery"
-    );
+    document.getElementById("gallery");
 
   const galleryCount =
-    document.getElementById(
-      "galleryCount"
-    );
+    document.getElementById("galleryCount");
 
   const footerLabel =
-    document.getElementById(
-      "footerLabel"
-    );
+    document.getElementById("footerLabel");
 
   const modeButtons =
-    [
-      ...document.querySelectorAll(
-        "[data-mode]"
-      )
-    ];
-
+    [...document.querySelectorAll("[data-mode]")];
 
   const popup =
-    document.getElementById(
-      "imagePopup"
-    );
+    document.getElementById("imagePopup");
 
   const popupImage =
-    document.getElementById(
-      "popupImage"
-    );
+    document.getElementById("popupImage");
 
   const popupCredit =
-    document.getElementById(
-      "popupCredit"
-    );
+    document.getElementById("popupCredit");
 
   const popupNumber =
-    document.getElementById(
-      "popupNumber"
-    );
+    document.getElementById("popupNumber");
 
   const popupClose =
-    document.getElementById(
-      "popupClose"
-    );
+    document.getElementById("popupClose");
 
 
   let currentMode =
@@ -1199,9 +1115,7 @@ body::before {
   function getInitialMode() {
 
     const params =
-      new URLSearchParams(
-        location.search
-      );
+      new URLSearchParams(location.search);
 
     const query =
       params.get("theme") ||
@@ -1216,9 +1130,7 @@ body::before {
     try {
 
       const saved =
-        localStorage.getItem(
-          "naru-current-mode"
-        );
+        localStorage.getItem("naru-current-mode");
 
       if (DATA[saved]) {
         return saved;
@@ -1231,9 +1143,7 @@ body::before {
   }
 
 
-  function renderGallery(
-    images
-  ) {
+  function renderGallery(images) {
 
     gallery.innerHTML =
       "";
@@ -1248,9 +1158,7 @@ body::before {
 
 
         const card =
-          document.createElement(
-            "button"
-          );
+          document.createElement("button");
 
 
         card.type =
@@ -1306,9 +1214,7 @@ body::before {
         `;
 
 
-        gallery.appendChild(
-          card
-        );
+        gallery.appendChild(card);
 
       }
     );
@@ -1316,9 +1222,7 @@ body::before {
   }
 
 
-  function renderMode(
-    mode
-  ) {
+  function renderMode(mode) {
 
     if (!DATA[mode]) {
       mode = "solmyeong";
@@ -1405,9 +1309,7 @@ body::before {
 
 
     const url =
-      new URL(
-        location.href
-      );
+      new URL(location.href);
 
     url.searchParams.delete(
       "mode"
@@ -1436,7 +1338,6 @@ body::before {
 
           closePopup();
 
-
           renderMode(
             button.dataset.mode
           );
@@ -1453,8 +1354,6 @@ body::before {
     }
   );
 
-
-  /* PROFILE PASSWORD */
 
   profileLink.addEventListener(
     "click",
@@ -1527,21 +1426,11 @@ body::before {
   );
 
 
-  /* =========================================================
-     POPUP
-  ========================================================= */
-
   function openPopup(
     src,
     artist,
     number
   ) {
-
-    /*
-      src 자체를 그대로 넣으므로
-      썸네일의 crop과 무관하게
-      원본 이미지 비율로 표시됨.
-    */
 
     popupImage.src =
       src;
@@ -1598,9 +1487,7 @@ body::before {
     event => {
 
       const card =
-        event.target.closest(
-          ".dream-card"
-        );
+        event.target.closest(".dream-card");
 
 
       if (!card) {
