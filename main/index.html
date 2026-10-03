@@ -103,7 +103,7 @@ body.podohaeil {
 
 
 /* =========================================================
-   BACKGROUND
+   BG
 ========================================================= */
 
 body::before {
@@ -113,8 +113,6 @@ body::before {
   inset: 0;
 
   z-index: -2;
-
-  pointer-events: none;
 
   background:
     radial-gradient(
@@ -142,7 +140,7 @@ body::before {
 
   border-bottom: 1px solid var(--line);
 
-  background: rgba(6,6,8,.82);
+  background: rgba(6,6,8,.84);
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -155,9 +153,36 @@ body::before {
   margin: 0 auto;
 
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
 }
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+.home-link {
+  color: var(--dim);
+
+  font-size: 10px;
+  font-weight: 650;
+
+  letter-spacing: .13em;
+
+  transition: color .2s ease;
+}
+
+.home-link:hover {
+  color: var(--accent-light);
+}
+
+
+/* =========================================================
+   HEADER RIGHT
+========================================================= */
 
 .header-right {
   display: flex;
@@ -346,7 +371,14 @@ body::before {
   gap: 22px;
 }
 
+
+/* =========================================================
+   ART
+========================================================= */
+
 .main-art {
+  --main-image: url("../pictures/6.jpg");
+
   position: relative;
 
   min-height: 520px;
@@ -359,19 +391,89 @@ body::before {
   background: var(--panel);
 }
 
+
+/* blurred backdrop */
+
+.main-art::before {
+  content: "";
+
+  position: absolute;
+  inset: -25px;
+
+  z-index: 0;
+
+  background-image:
+    var(--main-image);
+
+  background-size: cover;
+  background-position: center;
+
+  filter:
+    blur(20px)
+    brightness(.47)
+    saturate(.8);
+
+  transform: scale(1.08);
+
+  opacity: .72;
+}
+
+
+/* overlay */
+
+.main-art::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.20),
+      transparent 30%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0,0,0,.15),
+      transparent 35%
+    );
+}
+
+
 .main-art img {
+  position: absolute;
+
+  z-index: 1;
+
+  inset: 0;
+
   width: 100%;
   height: 100%;
 
   display: block;
 
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain;
+  object-position: right center;
 
-  filter:
-    saturate(.92)
-    brightness(.86);
+  transition:
+    opacity .3s ease,
+    transform .35s ease;
 }
+
+.main-art img.is-changing {
+  opacity: 0;
+  transform: translateX(8px);
+}
+
+
+/* =========================================================
+   WHO
+========================================================= */
 
 .who {
   min-height: 520px;
@@ -615,9 +717,7 @@ body::before {
   }
 
   .header-right {
-    width: 100%;
-
-    justify-content: space-between;
+    gap: 18px;
   }
 
   .main-nav {
@@ -627,6 +727,10 @@ body::before {
   .main-nav a {
     padding: 5px 0 7px;
 
+    font-size: 9px;
+  }
+
+  .home-link {
     font-size: 9px;
   }
 
@@ -645,7 +749,7 @@ body::before {
   }
 
   .main-art {
-    min-height: 400px;
+    min-height: 430px;
   }
 
   .who {
@@ -659,18 +763,19 @@ body::before {
 }
 
 
-@media(max-width:600px) {
+@media(max-width:620px) {
+
+  .header-inner {
+    align-items: flex-start;
+  }
+
+  .header-right {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
 
   .page-title {
     font-size: 58px;
-  }
-
-  .overview {
-    margin-top: 48px;
-  }
-
-  .main-art {
-    min-height: 330px;
   }
 
   .section {
@@ -682,15 +787,12 @@ body::before {
   }
 
   .about-row {
-    grid-template-columns: 35px 80px 1fr;
+    grid-template-columns:
+      35px
+      80px
+      1fr;
 
     gap: 12px;
-  }
-
-  .mode-btn {
-    padding: 6px 10px;
-
-    font-size: 9px;
   }
 
 }
@@ -706,7 +808,18 @@ body::before {
 
   <div class="header-inner">
 
+
+    <a
+      class="home-link"
+      id="homeLink"
+      href="../?mode=solmyeong"
+    >
+      ← HOME
+    </a>
+
+
     <div class="header-right">
+
 
       <nav class="main-nav">
 
@@ -808,9 +921,14 @@ body::before {
 
   <section class="overview">
 
-    <div class="main-art">
+
+    <div
+      class="main-art"
+      id="mainArt"
+    >
 
       <img
+        id="mainArtImage"
         src="../pictures/6.jpg"
         alt=""
       >
@@ -875,8 +993,6 @@ body::before {
 
 
 
-  <!-- ABOUT -->
-
   <section class="section">
 
     <header class="section-head">
@@ -893,32 +1009,19 @@ body::before {
 
 
     <div class="about-row">
-
-      <div class="about-number">
-        001
-      </div>
-
-      <div class="about-label">
-        MAIN
-      </div>
+      <div class="about-number">001</div>
+      <div class="about-label">MAIN</div>
 
       <div class="about-content">
         <strong>김솔음 &amp; 무명(■■■)</strong><br>
         조합명 · 솔명
       </div>
-
     </div>
 
 
     <div class="about-row">
-
-      <div class="about-number">
-        002
-      </div>
-
-      <div class="about-label">
-        SUB
-      </div>
+      <div class="about-number">002</div>
+      <div class="about-label">SUB</div>
 
       <div class="about-content">
         <strong>
@@ -926,87 +1029,56 @@ body::before {
         </strong><br>
         재관국 AU 요원 남매
       </div>
-
     </div>
 
 
     <div class="about-row">
-
-      <div class="about-number">
-        003
-      </div>
-
-      <div class="about-label">
-        NAME
-      </div>
+      <div class="about-number">003</div>
+      <div class="about-label">NAME</div>
 
       <div class="about-content">
         아름, 혹은 원하는 호칭이나 알고 계신
         다른 계정 닉으로 불러주셔도 됩니다.
       </div>
-
     </div>
 
 
     <div class="about-row">
-
-      <div class="about-number">
-        004
-      </div>
-
-      <div class="about-label">
-        CBC
-      </div>
+      <div class="about-number">004</div>
+      <div class="about-label">CBC</div>
 
       <div class="about-content">
         약 반이입 CBC 오픈성향.
         기본적으로는 오픈이나 일부 성향에 따라
         가려 받을 수 있습니다.
       </div>
-
     </div>
 
 
     <div class="about-row">
-
-      <div class="about-number">
-        005
-      </div>
-
-      <div class="about-label">
-        DREAM
-      </div>
+      <div class="about-number">005</div>
+      <div class="about-label">DREAM</div>
 
       <div class="about-content">
         오픈 드림이라고 하여 제 드림을 지워도 되는 것은 아닙니다.
         지워진다고 생각이 드는 즉시 블락으로 정리하며,
         이에 대한 컨택 받지 않습니다.
       </div>
-
     </div>
 
 
     <div class="about-row">
-
-      <div class="about-number">
-        006
-      </div>
-
-      <div class="about-label">
-        FOLLOW
-      </div>
+      <div class="about-number">006</div>
+      <div class="about-label">FOLLOW</div>
 
       <div class="about-content">
         고등학생 이하의 미성년자 분들은 받고 있지 않습니다.
       </div>
-
     </div>
 
   </section>
 
 
-
-  <!-- NOTICE -->
 
   <section class="section">
 
@@ -1045,8 +1117,6 @@ body::before {
   </section>
 
 
-
-  <!-- ETC -->
 
   <section class="section">
 
@@ -1104,6 +1174,9 @@ body::before {
 <script>
 (() => {
 
+  "use strict";
+
+
   const DATA = {
 
     solmyeong: {
@@ -1122,6 +1195,9 @@ body::before {
 
       catchphrase:
         "수레바퀴 위의 에트랑제",
+
+      image:
+        "../pictures/6.jpg",
 
       password:
         "nameless0414",
@@ -1149,6 +1225,9 @@ body::before {
       catchphrase:
         "녹슨 용골과 빛바랜 돛의 도해渡海",
 
+      image:
+        "../pictures/7.jpg",
+
       password:
         "seawave0414",
 
@@ -1162,6 +1241,11 @@ body::before {
 
   const body =
     document.body;
+
+  const homeLink =
+    document.getElementById(
+      "homeLink"
+    );
 
   const pageLabel =
     document.getElementById(
@@ -1198,6 +1282,16 @@ body::before {
       "dreamLink"
     );
 
+  const mainArt =
+    document.getElementById(
+      "mainArt"
+    );
+
+  const mainArtImage =
+    document.getElementById(
+      "mainArtImage"
+    );
+
   const buttons =
     [
       ...document.querySelectorAll(
@@ -1222,9 +1316,7 @@ body::before {
       params.get("mode");
 
 
-    if (
-      DATA[query]
-    ) {
+    if (DATA[query]) {
       return query;
     }
 
@@ -1236,9 +1328,7 @@ body::before {
           "naru-current-mode"
         );
 
-      if (
-        DATA[saved]
-      ) {
+      if (DATA[saved]) {
         return saved;
       }
 
@@ -1250,12 +1340,11 @@ body::before {
 
 
   function renderMode(
-    mode
+    mode,
+    animate = true
   ) {
 
-    if (
-      !DATA[mode]
-    ) {
+    if (!DATA[mode]) {
       mode = "solmyeong";
     }
 
@@ -1268,52 +1357,96 @@ body::before {
       DATA[mode];
 
 
-    body.classList.remove(
-      "solmyeong",
-      "podohaeil"
-    );
+    if (animate) {
 
-    body.classList.add(
-      data.className
-    );
+      mainArtImage.classList.add(
+        "is-changing"
+      );
 
-
-    document.title =
-      data.title;
+    }
 
 
-    pageLabel.textContent =
-      data.label;
-
-    pairName.textContent =
-      data.pair;
-
-    catchphrase.textContent =
-      data.catchphrase;
-
-    footerLabel.textContent =
-      data.label;
+    setTimeout(
+      () => {
 
 
-    mainLink.href =
-      `../main/?theme=${mode}`;
-
-    profileLink.href =
-      `../profile/?theme=${mode}`;
-
-    dreamLink.href =
-      `../dream/?theme=${mode}`;
-
-
-    buttons.forEach(
-      button => {
-
-        button.classList.toggle(
-          "active",
-          button.dataset.mode === mode
+        body.classList.remove(
+          "solmyeong",
+          "podohaeil"
         );
 
-      }
+        body.classList.add(
+          data.className
+        );
+
+
+        document.title =
+          data.title;
+
+
+        pageLabel.textContent =
+          data.label;
+
+        pairName.textContent =
+          data.pair;
+
+        catchphrase.textContent =
+          data.catchphrase;
+
+        footerLabel.textContent =
+          data.label;
+
+
+        /* HOME */
+
+        homeLink.href =
+          `../?mode=${mode}`;
+
+
+        /* nav */
+
+        mainLink.href =
+          `../main/?theme=${mode}`;
+
+        profileLink.href =
+          `../profile/?theme=${mode}`;
+
+        dreamLink.href =
+          `../dream/?theme=${mode}`;
+
+
+        /* MAIN ART */
+
+        mainArtImage.src =
+          data.image;
+
+        mainArt.style.setProperty(
+          "--main-image",
+          `url("${data.image}")`
+        );
+
+
+        /* switch */
+
+        buttons.forEach(
+          button => {
+
+            button.classList.toggle(
+              "active",
+              button.dataset.mode === mode
+            );
+
+          }
+        );
+
+
+        mainArtImage.classList.remove(
+          "is-changing"
+        );
+
+
+      },
+      animate ? 130 : 0
     );
 
 
@@ -1408,9 +1541,7 @@ body::before {
         );
 
 
-      if (
-        input === null
-      ) {
+      if (input === null) {
         return;
       }
 
@@ -1447,7 +1578,8 @@ body::before {
 
 
   renderMode(
-    currentMode
+    currentMode,
+    false
   );
 
 })();
