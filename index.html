@@ -8,6 +8,10 @@
 <title>솔명</title>
 
 <style>
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -66,12 +70,13 @@ body.solmyeong {
 
   --accent: #c85047;
   --accent-light: #df685f;
-  --accent-rgb: 200,80,71;
+  --accent-rgb: 200, 80, 71;
 
   --line: rgba(222,112,101,.17);
   --line-soft: rgba(255,255,255,.065);
 
-  --art-bg: #74170f;
+  --art-bg: #78170f;
+  --art-dark: #24100d;
 }
 
 body.podohaeil {
@@ -89,7 +94,8 @@ body.podohaeil {
   --line: rgba(119,149,237,.18);
   --line-soft: rgba(255,255,255,.065);
 
-  --art-bg: #2524d8;
+  --art-bg: #302bec;
+  --art-dark: #111631;
 }
 
 ::selection {
@@ -135,7 +141,7 @@ body.podohaeil {
   background:
     radial-gradient(
       circle at 7% 8%,
-      rgba(var(--accent-rgb), .11),
+      rgba(var(--accent-rgb), .10),
       transparent 27%
     ),
     linear-gradient(
@@ -147,7 +153,7 @@ body.podohaeil {
 
 
 /* =========================================================
-   SWITCH
+   MODE SWITCH
 ========================================================= */
 
 .mode-switch {
@@ -223,7 +229,6 @@ body.podohaeil {
   font-weight: 520;
 
   line-height: .94;
-
   letter-spacing: -.065em;
 }
 
@@ -340,63 +345,36 @@ body.podohaeil {
 
   overflow: hidden;
 
-  background: var(--art-bg);
+  background:
+    linear-gradient(
+      90deg,
+      var(--art-dark) 0%,
+      var(--art-bg) 26%,
+      var(--art-bg) 100%
+    );
+
+  transition: background .35s ease;
 }
 
 
 /* =========================================================
-   ART STAGE
+   ART
 ========================================================= */
 
 .art-stage {
-  --art-image: url("./pictures/1.jpg");
-
   position: absolute;
   inset: 0;
 
   overflow: hidden;
-
-  background: var(--art-bg);
 }
 
 
 /*
-  뒤쪽을 같은 일러스트의 확대된 버전으로 채움.
-  빈 공간처럼 보이지 않게 하는 역할.
+  검정/어두운 부분에서 그림 배경색으로
+  천천히 넘어가게 함.
 */
 
 .art-stage::before {
-  content: "";
-
-  position: absolute;
-
-  inset: -35px;
-
-  z-index: 0;
-
-  background-image:
-    var(--art-image);
-
-  background-size: cover;
-  background-position: center;
-
-  filter:
-    blur(24px)
-    brightness(.47)
-    saturate(.8);
-
-  transform: scale(1.08);
-
-  opacity: .72;
-}
-
-
-/*
-  왼쪽은 배경과 자연스럽게 이어지도록
-  그라데이션을 덮음.
-*/
-
-.art-stage::after {
   content: "";
 
   position: absolute;
@@ -409,31 +387,27 @@ body.podohaeil {
   background:
     linear-gradient(
       90deg,
-      rgba(0,0,0,.42) 0%,
-      rgba(0,0,0,.16) 18%,
-      transparent 42%
-    ),
-    linear-gradient(
-      0deg,
-      rgba(0,0,0,.11),
-      transparent 30%
+      rgba(0,0,0,.58) 0%,
+      rgba(0,0,0,.36) 7%,
+      rgba(0,0,0,.19) 15%,
+      rgba(0,0,0,.07) 24%,
+      transparent 34%
     );
 }
 
 
 /*
-  실제 원본 그림.
-  오른쪽 끝에 붙이고,
-  절대 잘리지 않게 contain.
+  실제 그림.
+  오른쪽 끝에 붙이고 전신은 자르지 않음.
 */
 
 .main-illust {
   position: absolute;
 
-  z-index: 1;
-
   top: 0;
   right: 0;
+
+  z-index: 1;
 
   width: 100%;
   height: 100%;
@@ -444,7 +418,7 @@ body.podohaeil {
   object-position: right bottom;
 
   transition:
-    opacity .3s ease,
+    opacity .28s ease,
     transform .4s ease;
 }
 
@@ -452,8 +426,8 @@ body.podohaeil {
   opacity: 0;
 
   transform:
-    translateX(12px)
-    scale(.99);
+    translateX(10px)
+    scale(.995);
 }
 
 
@@ -487,7 +461,7 @@ body.podohaeil {
         90deg,
         var(--bg) 0%,
         rgba(5,5,8,.91) 48%,
-        rgba(5,5,8,.30) 100%
+        rgba(5,5,8,.28) 100%
       ),
       linear-gradient(
         0deg,
@@ -507,7 +481,7 @@ body.podohaeil {
 
     right: -12%;
 
-    opacity: .68;
+    opacity: .66;
   }
 
   .pair-name {
@@ -541,6 +515,16 @@ body.podohaeil {
 
 }
 
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+  }
+
+}
 </style>
 </head>
 
@@ -549,6 +533,8 @@ body.podohaeil {
 
 <main class="page">
 
+
+  <!-- LEFT -->
 
   <section class="left">
 
@@ -579,7 +565,6 @@ body.podohaeil {
 
 
     <div class="content">
-
 
       <h1
         class="pair-name"
@@ -670,19 +655,17 @@ body.podohaeil {
 
       </nav>
 
-
     </div>
 
   </section>
 
 
 
+  <!-- RIGHT -->
+
   <section class="right">
 
-    <div
-      class="art-stage"
-      id="artStage"
-    >
+    <div class="art-stage">
 
       <img
         id="mainIllust"
@@ -796,11 +779,6 @@ body.podohaeil {
   const mainIllust =
     document.getElementById(
       "mainIllust"
-    );
-
-  const artStage =
-    document.getElementById(
-      "artStage"
     );
 
   const mainLink =
@@ -920,12 +898,6 @@ body.podohaeil {
           data.image;
 
 
-        artStage.style.setProperty(
-          "--art-image",
-          `url("${data.image}")`
-        );
-
-
         mainLink.href =
           data.main;
 
@@ -1008,6 +980,8 @@ body.podohaeil {
   );
 
 
+  /* PROFILE PASSWORD */
+
   profileLink.addEventListener(
     "click",
     event => {
@@ -1049,8 +1023,7 @@ body.podohaeil {
 
 
       if (
-        input ===
-        data.password
+        input === data.password
       ) {
 
         try {
