@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>naru.pub</title>
+
+<style>
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100svh;
+  overflow-x: hidden;
+
+  font-family:
+    "Pretendard",
+    "Noto Sans KR",
+    "Apple SD Gothic Neo",
+    sans-serif;
+
+  background: var(--bg);
+  color: var(--text);
+
+  transition:
+    background .4s ease,
+    color .4s ease;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   THEME
+========================================================= */
+
+body.solmyeong {
+  --bg: #090606;
+  --bg-soft: #110908;
+
+  --text: #f4efee;
+  --muted: #998b89;
+  --dim: #675b59;
+
+  --accent: #c74f46;
+  --accent-soft: rgba(199,79,70,.14);
+  --accent-rgb: 199,79,70;
+
+  --line: rgba(224,112,102,.18);
+  --line-soft: rgba(255,255,255,.065);
+
+  --image-bg: #65150f;
+}
+
+body.podohaeil {
+  --bg: #060812;
+  --bg-soft: #090d18;
+
+  --text: #f0f3fa;
+  --muted: #929bae;
+  --dim: #606879;
+
+  --accent: #5779e8;
+  --accent-soft: rgba(87,121,232,.14);
+  --accent-rgb: 87,121,232;
+
+  --line: rgba(119,148,235,.19);
+  --line-soft: rgba(255,255,255,.065);
+
+  --image-bg: #18228a;
+}
+
+::selection {
+  color: #fff;
+  background: var(--accent);
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+  min-height: 100svh;
+
+  display: grid;
+  grid-template-columns:
+    minmax(430px, 46%)
+    minmax(0, 54%);
+}
+
+
+/* =========================================================
+   LEFT
+========================================================= */
+
+.left {
+  position: relative;
+  z-index: 5;
+
+  min-height: 100svh;
+
+  padding:
+    clamp(30px, 3.4vw, 54px)
+    clamp(42px, 5.8vw, 100px)
+    clamp(34px, 4vw, 60px);
+
+  display: flex;
+  flex-direction: column;
+
+  background:
+    radial-gradient(
+      circle at 8% 12%,
+      rgba(var(--accent-rgb), .14),
+      transparent 28%
+    ),
+    linear-gradient(
+      140deg,
+      var(--bg-soft),
+      var(--bg) 70%
+    );
+}
+
+
+/* =========================================================
+   MODE SWITCH
+========================================================= */
+
+.mode-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.mode-switch {
+  position: relative;
+
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+
+  padding: 3px;
+
+  border: 1px solid var(--line);
+  border-radius: 999px;
+
+  background: rgba(0,0,0,.16);
+}
+
+.mode-btn {
+  position: relative;
+  z-index: 2;
+
+  min-width: 88px;
+
+  padding: 8px 15px;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: transparent;
+  color: var(--dim);
+
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: 650;
+
+  letter-spacing: -.015em;
+
+  transition:
+    color .22s ease,
+    background .22s ease;
+}
+
+.mode-btn:hover {
+  color: var(--text);
+}
+
+.mode-btn.active {
+  color: var(--text);
+  background: var(--accent-soft);
+}
+
+.mode-btn.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 22%;
+  right: 22%;
+  bottom: 4px;
+
+  height: 1px;
+
+  background: var(--accent);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content {
+  margin-top: auto;
+  margin-bottom: auto;
+
+  padding: 110px 0 80px;
+}
+
+.pair-meta {
+  margin-bottom: 17px;
+
+  color: var(--accent);
+
+  font-size: 9px;
+  font-weight: 650;
+
+  letter-spacing: .26em;
+}
+
+.pair-name {
+  margin: 0;
+
+  font-size: clamp(48px, 4.8vw, 74px);
+  font-weight: 500;
+
+  line-height: 1;
+  letter-spacing: -.065em;
+}
+
+.catchphrase {
+  margin-top: 22px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  line-height: 1.7;
+  letter-spacing: .015em;
+
+  word-break: keep-all;
+}
+
+.accent-line {
+  width: 48px;
+  height: 1px;
+
+  margin-top: 31px;
+
+  background: var(--accent);
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.menu {
+  width: min(100%, 390px);
+
+  margin-top: 55px;
+
+  border-top: 1px solid var(--line);
+}
+
+.menu-link {
+  display: grid;
+  grid-template-columns: 34px 1fr auto;
+  align-items: center;
+
+  padding: 17px 0;
+
+  border-bottom: 1px solid var(--line-soft);
+
+  transition:
+    padding .22s ease,
+    color .22s ease;
+}
+
+.menu-index {
+  color: var(--dim);
+
+  font-size: 9px;
+
+  letter-spacing: .08em;
+}
+
+.menu-title {
+  color: var(--text);
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.menu-arrow {
+  color: var(--dim);
+
+  font-size: 14px;
+
+  opacity: 0;
+
+  transform: translateX(-6px);
+
+  transition:
+    opacity .2s ease,
+    transform .2s ease,
+    color .2s ease;
+}
+
+.menu-link:hover {
+  padding-left: 8px;
+}
+
+.menu-link:hover .menu-title,
+.menu-link:hover .menu-arrow {
+  color: var(--accent);
+}
+
+.menu-link:hover .menu-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.bottom {
+  margin-top: auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  gap: 20px;
+
+  color: var(--dim);
+
+  font-size: 8px;
+
+  letter-spacing: .18em;
+}
+
+.bottom-line {
+  width: 30px;
+  height: 1px;
+
+  margin-bottom: 4px;
+
+  background: var(--line);
+}
+
+
+/* =========================================================
+   IMAGE SIDE
+========================================================= */
+
+.right {
+  position: relative;
+
+  min-width: 0;
+  min-height: 100svh;
+
+  overflow: hidden;
+
+  background: var(--image-bg);
+
+  border-left: 1px solid var(--line);
+}
+
+.image-stage {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  background: var(--image-bg);
+}
+
+.image-stage::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.18) 0%,
+      transparent 26%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0,0,0,.18) 0%,
+      transparent 30%
+    );
+}
+
+.main-illust {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center center;
+
+  transform: scale(1.001);
+
+  transition:
+    opacity .32s ease,
+    transform .55s ease;
+}
+
+.main-illust.is-changing {
+  opacity: 0;
+  transform: scale(1.025);
+}
+
+
+/* =========================================================
+   IMAGE INFO
+========================================================= */
+
+.image-top {
+  position: absolute;
+
+  top: 34px;
+  right: 38px;
+
+  z-index: 3;
+
+  color: rgba(255,255,255,.44);
+
+  font-size: 8px;
+
+  letter-spacing: .2em;
+}
+
+.image-bottom {
+  position: absolute;
+
+  left: 38px;
+  right: 38px;
+  bottom: 32px;
+
+  z-index: 3;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.image-pair {
+  color: rgba(255,255,255,.72);
+
+  font-size: 10px;
+  font-weight: 550;
+
+  letter-spacing: .14em;
+}
+
+.image-number {
+  color: rgba(255,255,255,.38);
+
+  font-size: 8px;
+
+  letter-spacing: .18em;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .page {
+    display: block;
+  }
+
+  .left {
+    min-height: 100svh;
+
+    padding:
+      28px
+      25px
+      34px;
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(7,7,10,.96) 0%,
+        rgba(7,7,10,.87) 48%,
+        rgba(7,7,10,.43) 100%
+      );
+  }
+
+  .right {
+    position: fixed;
+    inset: 0;
+
+    z-index: -1;
+
+    border: 0;
+  }
+
+  .right::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 4;
+
+    background:
+      linear-gradient(
+        90deg,
+        var(--bg) 0%,
+        rgba(0,0,0,.58) 48%,
+        rgba(0,0,0,.16)
+      ),
+      linear-gradient(
+        0deg,
+        var(--bg) 0%,
+        transparent 48%
+      );
+  }
+
+  .main-illust {
+    object-position: 62% center;
+    opacity: .66;
+  }
+
+  .image-top,
+  .image-bottom {
+    display: none;
+  }
+
+  .content {
+    width: min(85%, 420px);
+
+    padding: 90px 0 70px;
+  }
+
+  .pair-name {
+    font-size: 48px;
+  }
+
+  .catchphrase {
+    font-size: 12px;
+  }
+
+  .menu {
+    margin-top: 43px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .mode-btn {
+    min-width: 76px;
+
+    padding: 7px 12px;
+
+    font-size: 11px;
+  }
+
+  .pair-name {
+    font-size: 42px;
+  }
+
+  .content {
+    width: 90%;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+  }
+
+}
+</style>
+</head>
+
+
+<body class="solmyeong">
+
+<main class="page">
+
+
+  <!-- LEFT -->
+  <section class="left">
+
+
+    <!-- MODE SWITCH -->
+    <div class="mode-wrap">
+
+      <div class="mode-switch">
+
+        <button
+          type="button"
+          class="mode-btn active"
+          data-mode="solmyeong"
+        >
+          솔명
+        </button>
+
+        <button
+          type="button"
+          class="mode-btn"
+          data-mode="podohaeil"
+        >
+          포도해일
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <div class="pair-meta">
+        PAIR · 01
+      </div>
+
+      <h1
+        class="pair-name"
+        id="pairName"
+      >
+        솔명
+      </h1>
+
+      <div
+        class="catchphrase"
+        id="catchphrase"
+      >
+        수레바퀴 위의 에트랑제
+      </div>
+
+      <div class="accent-line"></div>
+
+
+      <!-- MENU -->
+      <nav class="menu">
+
+        <a
+          href="./main/?theme=solmyeong"
+          class="menu-link"
+          id="mainLink"
+        >
+          <span class="menu-index">01</span>
+          <span class="menu-title">Main</span>
+          <span class="menu-arrow">↗</span>
+        </a>
+
+
+        <a
+          href="./profile/?theme=solmyeong"
+          class="menu-link"
+          id="profileLink"
+        >
+          <span class="menu-index">02</span>
+          <span class="menu-title">Profile</span>
+          <span class="menu-arrow">↗</span>
+        </a>
+
+
+        <a
+          href="./dream/?theme=solmyeong"
+          class="menu-link"
+          id="dreamLink"
+        >
+          <span class="menu-index">03</span>
+          <span class="menu-title">Dream</span>
+          <span class="menu-arrow">↗</span>
+        </a>
+
+      </nav>
+
+    </div>
+
+
+    <!-- BOTTOM -->
+    <div class="bottom">
+
+      <div>
+        <div class="bottom-line"></div>
+        ARCHIVE
+      </div>
+
+      <div id="bottomMode">
+        SOLMYEONG
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- RIGHT -->
+  <section class="right">
+
+    <div class="image-stage">
+
+      <img
+        src="./pictures/1.jpg"
+        alt=""
+        class="main-illust"
+        id="mainIllust"
+      >
+
+      <div class="image-top">
+        VISUAL · 001
+      </div>
+
+      <div class="image-bottom">
+
+        <div
+          class="image-pair"
+          id="imagePair"
+        >
+          SOLMYEONG
+        </div>
+
+        <div
+          class="image-number"
+          id="imageNumber"
+        >
+          01 / 02
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+
+<script>
+(() => {
+
+  const DATA = {
+
+    solmyeong: {
+      className: "solmyeong",
+
+      name: "솔명",
+
+      catchphrase:
+        "수레바퀴 위의 에트랑제",
+
+      image:
+        "./pictures/1.jpg",
+
+      main:
+        "./main/?theme=solmyeong",
+
+      profile:
+        "./profile/?theme=solmyeong",
+
+      dream:
+        "./dream/?theme=solmyeong",
+
+      english:
+        "SOLMYEONG",
+
+      number:
+        "01 / 02",
+
+      password:
+        "nameless0414",
+
+      key:
+        "profile-solmyeong"
+    },
+
+
+    podohaeil: {
+      className: "podohaeil",
+
+      name: "포도해일",
+
+      catchphrase:
+        "녹슨 용골과 빛바랜 돛의 도해渡海",
+
+      image:
+        "./pictures/2.jpg",
+
+      main:
+        "./main/?theme=podohaeil",
+
+      profile:
+        "./profile/?theme=podohaeil",
+
+      dream:
+        "./dream/?theme=podohaeil",
+
+      english:
+        "PODOHAEIL",
+
+      number:
+        "02 / 02",
+
+      password:
+        "seawave0414",
+
+      key:
+        "profile-podohaeil"
+    }
+
+  };
+
+
+  const body =
+    document.body;
+
+  const buttons =
+    document.querySelectorAll("[data-mode]");
+
+  const pairName =
+    document.getElementById("pairName");
+
+  const catchphrase =
+    document.getElementById("catchphrase");
+
+  const mainIllust =
+    document.getElementById("mainIllust");
+
+  const mainLink =
+    document.getElementById("mainLink");
+
+  const profileLink =
+    document.getElementById("profileLink");
+
+  const dreamLink =
+    document.getElementById("dreamLink");
+
+  const imagePair =
+    document.getElementById("imagePair");
+
+  const imageNumber =
+    document.getElementById("imageNumber");
+
+  const bottomMode =
+    document.getElementById("bottomMode");
+
+
+  let currentMode =
+    getInitialMode();
+
+
+  function getInitialMode() {
+
+    const query =
+      new URLSearchParams(
+        location.search
+      ).get("mode");
+
+    if (DATA[query]) {
+      return query;
+    }
+
+    try {
+
+      const saved =
+        localStorage.getItem(
+          "naru-current-mode"
+        );
+
+      if (DATA[saved]) {
+        return saved;
+      }
+
+    } catch (e) {}
+
+    return "solmyeong";
+  }
+
+
+  function setMode(mode, animate = true) {
+
+    if (!DATA[mode]) {
+      mode = "solmyeong";
+    }
+
+    currentMode = mode;
+
+    const data =
+      DATA[mode];
+
+
+    try {
+
+      localStorage.setItem(
+        "naru-current-mode",
+        mode
+      );
+
+    } catch (e) {}
+
+
+    if (animate) {
+      mainIllust.classList.add(
+        "is-changing"
+      );
+    }
+
+
+    setTimeout(() => {
+
+      body.classList.remove(
+        "solmyeong",
+        "podohaeil"
+      );
+
+      body.classList.add(
+        data.className
+      );
+
+
+      pairName.textContent =
+        data.name;
+
+      catchphrase.textContent =
+        data.catchphrase;
+
+
+      mainIllust.src =
+        data.image;
+
+
+      mainLink.href =
+        data.main;
+
+      profileLink.href =
+        data.profile;
+
+      dreamLink.href =
+        data.dream;
+
+
+      imagePair.textContent =
+        data.english;
+
+      imageNumber.textContent =
+        data.number;
+
+      bottomMode.textContent =
+        data.english;
+
+
+      buttons.forEach(button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.mode === mode
+        );
+
+      });
+
+
+      mainIllust.classList.remove(
+        "is-changing"
+      );
+
+    }, animate ? 160 : 0);
+
+
+    const url =
+      new URL(location.href);
+
+    url.searchParams.set(
+      "mode",
+      mode
+    );
+
+    history.replaceState(
+      null,
+      "",
+      url
+    );
+
+  }
+
+
+  buttons.forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        setMode(
+          button.dataset.mode
+        );
+
+      }
+    );
+
+  });
+
+
+  /* Profile password */
+
+  profileLink.addEventListener(
+    "click",
+    event => {
+
+      event.preventDefault();
+
+      const data =
+        DATA[currentMode];
+
+
+      try {
+
+        if (
+          sessionStorage.getItem(
+            data.key
+          ) === "ok"
+        ) {
+
+          location.href =
+            data.profile;
+
+          return;
+        }
+
+      } catch (e) {}
+
+
+      const input =
+        prompt(
+          `${data.name} Profile 비밀번호를 입력하세요.`
+        );
+
+
+      if (input === null) {
+        return;
+      }
+
+
+      if (
+        input === data.password
+      ) {
+
+        try {
+
+          sessionStorage.setItem(
+            data.key,
+            "ok"
+          );
+
+        } catch (e) {}
+
+
+        location.href =
+          data.profile;
+
+        return;
+      }
+
+
+      alert(
+        "비밀번호가 틀렸습니다."
+      );
+
+    }
+  );
+
+
+  setMode(
+    currentMode,
+    false
+  );
+
+})();
+</script>
+
+</body>
+</html>
