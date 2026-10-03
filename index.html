@@ -56,6 +56,7 @@ a {
 }
 
 img {
+  display: block;
   max-width: 100%;
 }
 
@@ -66,26 +67,22 @@ img {
 
 
 /* =========================================================
-   THEME
+   THEMES
 ========================================================= */
 
 body.solmyeong {
-  --bg: #090606;
-  --bg-soft: #110908;
+  --bg: #080606;
+  --bg-soft: #100908;
 
-  --text: #f4efee;
-  --muted: #9f908d;
-  --dim: #695c59;
+  --text: #f3eeee;
+  --muted: #9c8f8c;
+  --dim: #655956;
 
   --accent: #c85047;
-  --accent-light: #df685f;
-  --accent-rgb: 200,80,71;
+  --accent-soft: rgba(200,80,71,.12);
 
-  --line: rgba(222,112,101,.17);
+  --line: rgba(222,112,101,.16);
   --line-soft: rgba(255,255,255,.065);
-
-  --art-bg: #77170f;
-  --art-panel: #28100d;
 }
 
 
@@ -94,67 +91,90 @@ body.podohaeil {
   --bg-soft: #090d19;
 
   --text: #f0f3fa;
-  --muted: #949caf;
+  --muted: #929bad;
   --dim: #626a7e;
 
   --accent: #5779e8;
-  --accent-light: #7590ef;
-  --accent-rgb: 87,121,232;
+  --accent-soft: rgba(87,121,232,.13);
 
-  --line: rgba(119,149,237,.18);
+  --line: rgba(119,149,237,.17);
   --line-soft: rgba(255,255,255,.065);
-
-  --art-bg: #302bec;
-  --art-panel: #111730;
 }
 
 
 /* =========================================================
-   PAGE
+   BACKGROUND
 ========================================================= */
 
-.page {
-  min-height: 100svh;
+body::before {
+  content: "";
 
-  display: grid;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
 
-  grid-template-columns:
-    minmax(430px, 45%)
-    minmax(0, 55%);
-
-  overflow: hidden;
-}
-
-
-/* =========================================================
-   LEFT
-========================================================= */
-
-.left {
-  position: relative;
-  z-index: 3;
-
-  min-height: 100svh;
-
-  padding:
-    clamp(34px, 4vw, 58px)
-    clamp(48px, 5.5vw, 96px)
-    clamp(42px, 5vw, 68px);
-
-  display: flex;
-  flex-direction: column;
+  pointer-events: none;
 
   background:
     radial-gradient(
-      circle at 8% 7%,
-      rgba(var(--accent-rgb), .10),
-      transparent 28%
+      circle at 50% 38%,
+      var(--accent-soft),
+      transparent 34%
     ),
     linear-gradient(
       145deg,
       var(--bg-soft),
-      var(--bg) 72%
+      var(--bg) 68%
     );
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+.home {
+  width: 100%;
+  min-height: 100svh;
+
+  padding:
+    clamp(32px, 5vh, 68px)
+    32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*
+  핵심:
+  왼쪽/오른쪽이 화면 끝으로 흩어지지 않고
+  하나의 중앙 그룹처럼 보이도록 폭 제한.
+*/
+
+.home-inner {
+  width: min(1160px, 100%);
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(330px, 390px)
+    minmax(440px, 570px);
+
+  gap: clamp(48px, 6vw, 86px);
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.home-info {
+  min-width: 0;
 }
 
 
@@ -163,23 +183,22 @@ body.podohaeil {
 ========================================================= */
 
 .mode-switch {
-  align-self: flex-start;
+  width: fit-content;
 
   display: flex;
-  align-items: center;
 
   padding: 3px;
 
   border: 1px solid var(--line);
   border-radius: 999px;
 
-  background: rgba(0,0,0,.18);
+  background: rgba(0,0,0,.16);
 }
 
 .mode-btn {
-  min-width: 88px;
+  min-width: 83px;
 
-  padding: 8px 15px;
+  padding: 7px 14px;
 
   border-radius: 999px;
 
@@ -188,7 +207,7 @@ body.podohaeil {
 
   cursor: pointer;
 
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 650;
 
   transition:
@@ -204,47 +223,41 @@ body.podohaeil {
 .mode-btn.active {
   color: var(--text);
 
-  background:
-    rgba(var(--accent-rgb), .12);
+  background: var(--accent-soft);
 
   box-shadow:
-    inset 0 0 0 1px
-    rgba(var(--accent-rgb), .30);
+    inset 0 0 0 1px var(--line);
 }
 
 
 /* =========================================================
-   LEFT CONTENT
+   PAIR
 ========================================================= */
 
-.content {
-  width: min(100%, 470px);
-
-  margin-top: auto;
-  margin-bottom: auto;
-
-  padding: 90px 0;
+.pair-content {
+  margin-top: 76px;
 }
 
 .pair-name {
   margin: 0;
 
+  color: var(--text);
+
   font-size:
-    clamp(50px, 5vw, 76px);
+    clamp(56px, 5.5vw, 82px);
 
-  font-weight: 520;
+  font-weight: 500;
 
-  line-height: .95;
-
+  line-height: .92;
   letter-spacing: -.065em;
 }
 
 .catchphrase {
-  margin-top: 24px;
+  margin-top: 25px;
 
   color: var(--muted);
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
 
   line-height: 1.75;
@@ -253,38 +266,31 @@ body.podohaeil {
 }
 
 .accent-line {
-  width: 46px;
+  width: 43px;
   height: 1px;
 
-  margin-top: 34px;
+  margin-top: 32px;
 
   background: var(--accent);
 }
 
 
 /* =========================================================
-   MENU
+   NAV
 ========================================================= */
 
 .menu {
-  margin-top: 56px;
+  margin-top: 52px;
 
   border-top: 1px solid var(--line);
 }
 
 .menu-link {
-  display: grid;
+  min-height: 57px;
 
-  grid-template-columns:
-    38px
-    1fr
-    auto;
-
+  display: flex;
   align-items: center;
-
-  gap: 12px;
-
-  min-height: 60px;
+  justify-content: space-between;
 
   border-bottom: 1px solid var(--line-soft);
 
@@ -293,25 +299,17 @@ body.podohaeil {
     background .2s ease;
 }
 
-.menu-index {
-  color: var(--dim);
-
-  font-size: 9px;
-
-  letter-spacing: .1em;
-}
-
 .menu-title {
   color: var(--text);
 
-  font-size: 15px;
-  font-weight: 520;
+  font-size: 14px;
+  font-weight: 550;
 }
 
 .menu-arrow {
   color: var(--accent);
 
-  font-size: 14px;
+  font-size: 13px;
 
   opacity: 0;
 
@@ -323,184 +321,93 @@ body.podohaeil {
 }
 
 .menu-link:hover {
-  padding-left: 9px;
-  padding-right: 9px;
+  padding-left: 8px;
+  padding-right: 8px;
 
-  background:
-    rgba(var(--accent-rgb), .025);
-}
-
-.menu-link:hover .menu-title {
-  color: var(--accent-light);
+  background: rgba(255,255,255,.015);
 }
 
 .menu-link:hover .menu-arrow {
   opacity: 1;
-
   transform: translateX(0);
 }
 
 
 /* =========================================================
-   RIGHT
+   VISUAL
 ========================================================= */
 
-.right {
-  position: relative;
-
+.visual-wrap {
   min-width: 0;
-  min-height: 100svh;
-
-  padding:
-    clamp(28px, 3.2vw, 54px)
-    clamp(28px, 3.6vw, 64px)
-    clamp(28px, 3.2vw, 54px)
-    clamp(18px, 2vw, 34px);
 
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at 72% 50%,
-      rgba(var(--accent-rgb), .10),
-      transparent 48%
-    ),
-    var(--bg);
+  justify-content: center;
 }
 
 
-/* subtle separator */
+/*
+  일러스트 자체가 블럭.
+  바깥쪽 별도 카드 없음.
+*/
 
-.right::before {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  top: 8%;
-  bottom: 8%;
-
-  width: 1px;
-
-  background:
-    linear-gradient(
-      180deg,
-      transparent,
-      var(--line),
-      transparent
-    );
-}
-
-
-/* =========================================================
-   ART CARD
-========================================================= */
-
-.art-card {
+.visual-block {
   position: relative;
 
-  width: min(100%, 760px);
-  height: calc(100svh - clamp(56px, 7vw, 108px));
+  width: min(100%, 560px);
 
-  max-height: 900px;
-  min-height: 560px;
+  aspect-ratio: 1 / 1;
 
   overflow: hidden;
 
   border: 1px solid var(--line);
   border-radius: 30px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.025),
-      rgba(255,255,255,0)
-    ),
-    var(--art-panel);
+  background: #080808;
 
   box-shadow:
-    0 30px 80px rgba(0,0,0,.22);
+    0 24px 70px rgba(0,0,0,.22);
 
   transition:
-    border-color .3s ease,
     transform .3s ease,
-    background .35s ease;
+    border-color .3s ease;
 }
 
-.art-card:hover {
-  border-color:
-    rgba(var(--accent-rgb), .30);
+.visual-block:hover {
+  transform: translateY(-3px);
 
-  transform: translateY(-2px);
+  border-color: var(--accent);
 }
 
-
-/* =========================================================
-   IMAGE AREA
-========================================================= */
-
-.art-image-wrap {
-  position: absolute;
-
-  inset: 18px;
-
-  overflow: hidden;
-
-  border-radius: 22px;
-
-  background:
-    var(--art-bg);
-
-  transition:
-    background .35s ease;
-}
-
-
-/*
-  원본 일러스트를 통째로 보여줌.
-  잘라내지 않음.
-*/
 
 .main-illust {
   position: absolute;
-
   inset: 0;
 
   width: 100%;
   height: 100%;
 
-  display: block;
-
-  object-fit: contain;
-
-  /*
-    캐릭터를 살짝 오른쪽 아래로.
-  */
-  object-position: right bottom;
+  object-fit: cover;
 
   transition:
     opacity .28s ease,
-    transform .4s ease;
+    transform .45s ease;
+}
+
+.visual-block:hover .main-illust {
+  transform: scale(1.012);
 }
 
 .main-illust.is-changing {
   opacity: 0;
-
-  transform:
-    translateX(10px)
-    scale(.99);
 }
 
 
-/* =========================================================
-   VERY SUBTLE CARD GRADIENT
-========================================================= */
+/*
+  이미지 위에 거의 안 보일 정도의
+  얕은 톤 정리만.
+*/
 
-.art-image-wrap::after {
+.visual-block::after {
   content: "";
 
   position: absolute;
@@ -510,147 +417,102 @@ body.podohaeil {
 
   background:
     linear-gradient(
-      90deg,
-      rgba(0,0,0,.10),
-      transparent 24%
-    ),
-    linear-gradient(
       0deg,
-      rgba(0,0,0,.08),
-      transparent 24%
+      rgba(0,0,0,.09),
+      transparent 27%
     );
 }
 
 
 /* =========================================================
-   SMALL DECORATION
+   TABLET
 ========================================================= */
 
-.card-corner {
-  position: absolute;
+@media (max-width: 950px) {
 
-  z-index: 3;
+  .home {
+    align-items: flex-start;
 
-  right: 34px;
-  bottom: 31px;
-
-  width: 7px;
-  height: 7px;
-
-  border-radius: 50%;
-
-  background: var(--accent);
-
-  opacity: .72;
-}
-
-
-/* =========================================================
-   MOBILE / TABLET
-========================================================= */
-
-@media (max-width: 900px) {
-
-  .page {
-    display: block;
-    overflow: visible;
+    padding-top: 38px;
+    padding-bottom: 38px;
   }
 
-  .left {
-    min-height: auto;
+  .home-inner {
+    width: min(720px, 100%);
 
-    padding:
-      28px
-      25px
-      42px;
+    grid-template-columns: 1fr;
+
+    gap: 54px;
   }
 
-  .content {
-    width: min(100%, 470px);
-
-    margin: 95px 0 0;
-
-    padding: 0;
-  }
-
-  .right {
-    min-height: auto;
-
-    padding:
-      0
-      20px
-      28px;
-
-    display: block;
-  }
-
-  .right::before {
-    display: none;
-  }
-
-  .art-card {
-    width: 100%;
-    height: min(78vh, 760px);
-
-    min-height: 520px;
+  .home-info {
+    width: min(520px, 100%);
 
     margin: 0 auto;
   }
 
-  .pair-name {
-    font-size: 52px;
+  .pair-content {
+    margin-top: 68px;
+  }
+
+  .visual-wrap {
+    width: 100%;
+  }
+
+  .visual-block {
+    width: min(100%, 620px);
   }
 
 }
 
 
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 560px) {
 
-  .left {
+  .home {
     padding:
       22px
-      18px
-      34px;
+      16px
+      26px;
+  }
+
+  .home-inner {
+    gap: 40px;
   }
 
   .mode-btn {
-    min-width: 76px;
+    min-width: 75px;
 
-    padding: 7px 11px;
+    padding: 7px 10px;
 
-    font-size: 10px;
+    font-size: 9px;
   }
 
-  .content {
-    margin-top: 75px;
+  .pair-content {
+    margin-top: 58px;
   }
 
   .pair-name {
-    font-size: 44px;
+    font-size: 48px;
   }
 
   .catchphrase {
     font-size: 12px;
   }
 
-  .right {
-    padding:
-      0
-      12px
-      18px;
+  .menu {
+    margin-top: 42px;
   }
 
-  .art-card {
-    min-height: 430px;
-    height: 68vh;
+  .menu-link {
+    min-height: 53px;
+  }
 
+  .visual-block {
     border-radius: 22px;
-  }
-
-  .art-image-wrap {
-    inset: 11px;
-
-    border-radius: 16px;
   }
 
 }
@@ -671,147 +533,141 @@ body.podohaeil {
 
 <body class="solmyeong">
 
-<main class="page">
+
+<main class="home">
+
+  <div class="home-inner">
 
 
-  <!-- =====================================================
-       LEFT
-  ====================================================== -->
+    <!-- =====================================================
+         INFO
+    ====================================================== -->
 
-  <section class="left">
-
-
-    <div
-      class="mode-switch"
-      aria-label="모드 전환"
-    >
-
-      <button
-        type="button"
-        class="mode-btn"
-        data-mode="solmyeong"
-      >
-        솔명
-      </button>
-
-      <button
-        type="button"
-        class="mode-btn"
-        data-mode="podohaeil"
-      >
-        포도해일
-      </button>
-
-    </div>
-
-
-
-    <div class="content">
-
-      <h1
-        class="pair-name"
-        id="pairName"
-      >
-        솔명
-      </h1>
+    <section class="home-info">
 
 
       <div
-        class="catchphrase"
-        id="catchphrase"
+        class="mode-switch"
+        aria-label="모드 전환"
       >
-        수레바퀴 위의 에트랑제
+
+        <button
+          type="button"
+          class="mode-btn"
+          data-mode="solmyeong"
+        >
+          솔명
+        </button>
+
+        <button
+          type="button"
+          class="mode-btn"
+          data-mode="podohaeil"
+        >
+          포도해일
+        </button>
+
       </div>
 
 
-      <div class="accent-line"></div>
+
+      <div class="pair-content">
+
+
+        <h1
+          class="pair-name"
+          id="pairName"
+        >
+          솔명
+        </h1>
+
+
+        <div
+          class="catchphrase"
+          id="catchphrase"
+        >
+          수레바퀴 위의 에트랑제
+        </div>
+
+
+        <div class="accent-line"></div>
 
 
 
-      <nav
-        class="menu"
-        aria-label="페이지 메뉴"
-      >
-
-        <a
-          class="menu-link"
-          id="mainLink"
-          href="./main/?theme=solmyeong"
+        <nav
+          class="menu"
+          aria-label="페이지 메뉴"
         >
 
-          <span class="menu-index">
-            01
-          </span>
 
-          <span class="menu-title">
-            Main
-          </span>
+          <a
+            class="menu-link"
+            id="mainLink"
+            href="./main/?theme=solmyeong"
+          >
 
-          <span class="menu-arrow">
-            ↗
-          </span>
+            <span class="menu-title">
+              Main
+            </span>
 
-        </a>
+            <span class="menu-arrow">
+              ↗
+            </span>
 
-
-        <a
-          class="menu-link"
-          id="profileLink"
-          href="./profile/?theme=solmyeong"
-        >
-
-          <span class="menu-index">
-            02
-          </span>
-
-          <span class="menu-title">
-            Profile
-          </span>
-
-          <span class="menu-arrow">
-            ↗
-          </span>
-
-        </a>
+          </a>
 
 
-        <a
-          class="menu-link"
-          id="dreamLink"
-          href="./dream/?theme=solmyeong"
-        >
+          <a
+            class="menu-link"
+            id="profileLink"
+            href="./profile/?theme=solmyeong"
+          >
 
-          <span class="menu-index">
-            03
-          </span>
+            <span class="menu-title">
+              Profile
+            </span>
 
-          <span class="menu-title">
-            Dream
-          </span>
+            <span class="menu-arrow">
+              ↗
+            </span>
 
-          <span class="menu-arrow">
-            ↗
-          </span>
+          </a>
 
-        </a>
 
-      </nav>
+          <a
+            class="menu-link"
+            id="dreamLink"
+            href="./dream/?theme=solmyeong"
+          >
 
-    </div>
+            <span class="menu-title">
+              Dream
+            </span>
 
-  </section>
+            <span class="menu-arrow">
+              ↗
+            </span>
+
+          </a>
+
+
+        </nav>
+
+
+      </div>
+
+
+    </section>
 
 
 
-  <!-- =====================================================
-       RIGHT
-  ====================================================== -->
+    <!-- =====================================================
+         VISUAL
+    ====================================================== -->
 
-  <section class="right">
+    <section class="visual-wrap">
 
-    <div class="art-card">
-
-      <div class="art-image-wrap">
+      <div class="visual-block">
 
         <img
           id="mainIllust"
@@ -822,12 +678,10 @@ body.podohaeil {
 
       </div>
 
-      <div class="card-corner"></div>
+    </section>
 
-    </div>
 
-  </section>
-
+  </div>
 
 </main>
 
@@ -838,10 +692,6 @@ body.podohaeil {
 
   "use strict";
 
-
-  /* =========================================================
-     DATA
-  ========================================================= */
 
   const DATA = {
 
@@ -861,6 +711,13 @@ body.podohaeil {
 
       image:
         "./pictures/1.jpg",
+
+      /*
+        정사각형 블럭 안에서
+        인물 위주로 보이도록 위치.
+      */
+      imagePosition:
+        "76% center",
 
       main:
         "./main/?theme=solmyeong",
@@ -897,6 +754,9 @@ body.podohaeil {
       image:
         "./pictures/2.jpg",
 
+      imagePosition:
+        "70% center",
+
       main:
         "./main/?theme=podohaeil",
 
@@ -916,10 +776,6 @@ body.podohaeil {
 
   };
 
-
-  /* =========================================================
-     ELEMENTS
-  ========================================================= */
 
   const body =
     document.body;
@@ -967,7 +823,7 @@ body.podohaeil {
 
 
   /* =========================================================
-     INITIAL MODE
+     GET MODE
   ========================================================= */
 
   function getInitialMode() {
@@ -991,8 +847,9 @@ body.podohaeil {
 
       const saved =
         localStorage.getItem(
-          "naru-current-mode"
+          "pair-current-mode"
         );
+
 
       if (DATA[saved]) {
         return saved;
@@ -1039,10 +896,12 @@ body.podohaeil {
     setTimeout(
       () => {
 
+
         body.classList.remove(
           "solmyeong",
           "podohaeil"
         );
+
 
         body.classList.add(
           data.className
@@ -1063,6 +922,10 @@ body.podohaeil {
 
         mainIllust.src =
           data.image;
+
+
+        mainIllust.style.objectPosition =
+          data.imagePosition;
 
 
         mainLink.href =
@@ -1093,6 +956,7 @@ body.podohaeil {
           "is-changing"
         );
 
+
       },
       animate ? 130 : 0
     );
@@ -1101,7 +965,7 @@ body.podohaeil {
     try {
 
       localStorage.setItem(
-        "naru-current-mode",
+        "pair-current-mode",
         mode
       );
 
@@ -1113,14 +977,17 @@ body.podohaeil {
         location.href
       );
 
+
     url.searchParams.delete(
       "theme"
     );
+
 
     url.searchParams.set(
       "mode",
       mode
     );
+
 
     history.replaceState(
       null,
@@ -1132,7 +999,7 @@ body.podohaeil {
 
 
   /* =========================================================
-     MODE SWITCH
+     SWITCH
   ========================================================= */
 
   buttons.forEach(
@@ -1192,12 +1059,16 @@ body.podohaeil {
         );
 
 
-      if (input === null) {
+      if (
+        input === null
+      ) {
         return;
       }
 
 
-      if (input === data.password) {
+      if (
+        input === data.password
+      ) {
 
         try {
 
