@@ -8,6 +8,10 @@
 <title>솔명 · MAIN</title>
 
 <style>
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -97,13 +101,13 @@ body.podohaeil {
 }
 
 ::selection {
-  color: white;
+  color: #fff;
   background: var(--accent);
 }
 
 
 /* =========================================================
-   BG
+   BACKGROUND
 ========================================================= */
 
 body::before {
@@ -113,6 +117,8 @@ body::before {
   inset: 0;
 
   z-index: -2;
+
+  pointer-events: none;
 
   background:
     radial-gradient(
@@ -239,7 +245,7 @@ body::before {
 
 
 /* =========================================================
-   MODE
+   MODE SWITCH
 ========================================================= */
 
 .mode-switch {
@@ -265,6 +271,15 @@ body::before {
 
   font-size: 10px;
   font-weight: 650;
+
+  transition:
+    color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.mode-btn:hover {
+  color: var(--text);
 }
 
 .mode-btn.active {
@@ -293,7 +308,7 @@ body::before {
 
 
 /* =========================================================
-   HEAD
+   PAGE HEAD
 ========================================================= */
 
 .page-head {
@@ -373,12 +388,10 @@ body::before {
 
 
 /* =========================================================
-   ART
+   MAIN ART
 ========================================================= */
 
 .main-art {
-  --main-image: url("../pictures/6.jpg");
-
   position: relative;
 
   min-height: 520px;
@@ -392,82 +405,43 @@ body::before {
 }
 
 
-/* blurred backdrop */
-
-.main-art::before {
-  content: "";
-
-  position: absolute;
-  inset: -25px;
-
-  z-index: 0;
-
-  background-image:
-    var(--main-image);
-
-  background-size: cover;
-  background-position: center;
-
-  filter:
-    blur(20px)
-    brightness(.47)
-    saturate(.8);
-
-  transform: scale(1.08);
-
-  opacity: .72;
-}
-
-
-/* overlay */
-
-.main-art::after {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  z-index: 2;
-
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,.20),
-      transparent 30%
-    ),
-    linear-gradient(
-      0deg,
-      rgba(0,0,0,.15),
-      transparent 35%
-    );
-}
-
+/*
+  다시 원래 방식:
+  카드 영역을 이미지가 꽉 채움.
+*/
 
 .main-art img {
-  position: absolute;
-
-  z-index: 1;
-
-  inset: 0;
-
   width: 100%;
   height: 100%;
 
+  position: absolute;
+  inset: 0;
+
   display: block;
 
-  object-fit: contain;
-  object-position: right center;
+  object-fit: cover;
+  object-position: center;
+
+  filter:
+    saturate(.94)
+    brightness(.90);
 
   transition:
-    opacity .3s ease,
-    transform .35s ease;
+    opacity .28s ease,
+    transform .35s ease,
+    filter .35s ease;
+}
+
+.main-art:hover img {
+  transform: scale(1.012);
+
+  filter:
+    saturate(1)
+    brightness(.97);
 }
 
 .main-art img.is-changing {
   opacity: 0;
-  transform: translateX(8px);
 }
 
 
@@ -919,18 +893,17 @@ body::before {
 
 
 
+  <!-- OVERVIEW -->
+
   <section class="overview">
 
 
-    <div
-      class="main-art"
-      id="mainArt"
-    >
+    <div class="main-art">
 
       <img
         id="mainArtImage"
         src="../pictures/6.jpg"
-        alt=""
+        alt="메인 일러스트"
       >
 
     </div>
@@ -993,6 +966,8 @@ body::before {
 
 
 
+  <!-- ABOUT -->
+
   <section class="section">
 
     <header class="section-head">
@@ -1009,19 +984,32 @@ body::before {
 
 
     <div class="about-row">
-      <div class="about-number">001</div>
-      <div class="about-label">MAIN</div>
+
+      <div class="about-number">
+        001
+      </div>
+
+      <div class="about-label">
+        MAIN
+      </div>
 
       <div class="about-content">
         <strong>김솔음 &amp; 무명(■■■)</strong><br>
         조합명 · 솔명
       </div>
+
     </div>
 
 
     <div class="about-row">
-      <div class="about-number">002</div>
-      <div class="about-label">SUB</div>
+
+      <div class="about-number">
+        002
+      </div>
+
+      <div class="about-label">
+        SUB
+      </div>
 
       <div class="about-content">
         <strong>
@@ -1029,56 +1017,87 @@ body::before {
         </strong><br>
         재관국 AU 요원 남매
       </div>
+
     </div>
 
 
     <div class="about-row">
-      <div class="about-number">003</div>
-      <div class="about-label">NAME</div>
+
+      <div class="about-number">
+        003
+      </div>
+
+      <div class="about-label">
+        NAME
+      </div>
 
       <div class="about-content">
         아름, 혹은 원하는 호칭이나 알고 계신
         다른 계정 닉으로 불러주셔도 됩니다.
       </div>
+
     </div>
 
 
     <div class="about-row">
-      <div class="about-number">004</div>
-      <div class="about-label">CBC</div>
+
+      <div class="about-number">
+        004
+      </div>
+
+      <div class="about-label">
+        CBC
+      </div>
 
       <div class="about-content">
         약 반이입 CBC 오픈성향.
         기본적으로는 오픈이나 일부 성향에 따라
         가려 받을 수 있습니다.
       </div>
+
     </div>
 
 
     <div class="about-row">
-      <div class="about-number">005</div>
-      <div class="about-label">DREAM</div>
+
+      <div class="about-number">
+        005
+      </div>
+
+      <div class="about-label">
+        DREAM
+      </div>
 
       <div class="about-content">
         오픈 드림이라고 하여 제 드림을 지워도 되는 것은 아닙니다.
         지워진다고 생각이 드는 즉시 블락으로 정리하며,
         이에 대한 컨택 받지 않습니다.
       </div>
+
     </div>
 
 
     <div class="about-row">
-      <div class="about-number">006</div>
-      <div class="about-label">FOLLOW</div>
+
+      <div class="about-number">
+        006
+      </div>
+
+      <div class="about-label">
+        FOLLOW
+      </div>
 
       <div class="about-content">
         고등학생 이하의 미성년자 분들은 받고 있지 않습니다.
       </div>
+
     </div>
 
   </section>
 
 
+
+  <!-- NOTICE -->
 
   <section class="section">
 
@@ -1117,6 +1136,8 @@ body::before {
   </section>
 
 
+
+  <!-- ETC -->
 
   <section class="section">
 
@@ -1282,11 +1303,6 @@ body::before {
       "dreamLink"
     );
 
-  const mainArt =
-    document.getElementById(
-      "mainArt"
-    );
-
   const mainArtImage =
     document.getElementById(
       "mainArtImage"
@@ -1369,7 +1385,6 @@ body::before {
     setTimeout(
       () => {
 
-
         body.classList.remove(
           "solmyeong",
           "podohaeil"
@@ -1403,7 +1418,7 @@ body::before {
           `../?mode=${mode}`;
 
 
-        /* nav */
+        /* navigation */
 
         mainLink.href =
           `../main/?theme=${mode}`;
@@ -1415,18 +1430,15 @@ body::before {
           `../dream/?theme=${mode}`;
 
 
-        /* MAIN ART */
+        /*
+          핵심:
+          솔명 = 6.jpg
+          포도해일 = 7.jpg
+        */
 
         mainArtImage.src =
           data.image;
 
-        mainArt.style.setProperty(
-          "--main-image",
-          `url("${data.image}")`
-        );
-
-
-        /* switch */
 
         buttons.forEach(
           button => {
@@ -1443,7 +1455,6 @@ body::before {
         mainArtImage.classList.remove(
           "is-changing"
         );
-
 
       },
       animate ? 130 : 0
@@ -1483,6 +1494,10 @@ body::before {
   }
 
 
+  /* =========================================================
+     MODE SWITCH
+  ========================================================= */
+
   buttons.forEach(
     button => {
 
@@ -1493,6 +1508,7 @@ body::before {
           renderMode(
             button.dataset.mode
           );
+
 
           window.scrollTo({
             top: 0,
@@ -1505,6 +1521,10 @@ body::before {
     }
   );
 
+
+  /* =========================================================
+     PROFILE PASSWORD
+  ========================================================= */
 
   profileLink.addEventListener(
     "click",
@@ -1547,8 +1567,7 @@ body::before {
 
 
       if (
-        input ===
-        data.password
+        input === data.password
       ) {
 
         try {
@@ -1576,6 +1595,10 @@ body::before {
     }
   );
 
+
+  /* =========================================================
+     START
+  ========================================================= */
 
   renderMode(
     currentMode,
