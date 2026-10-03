@@ -53,7 +53,7 @@ a {
 
 
 /* =========================================================
-   THEMES
+   THEME
 ========================================================= */
 
 body.solmyeong {
@@ -71,7 +71,7 @@ body.solmyeong {
   --line: rgba(222,112,101,.17);
   --line-soft: rgba(255,255,255,.065);
 
-  --art-bg: #73140d;
+  --art-bg: #74170f;
 }
 
 body.podohaeil {
@@ -89,7 +89,7 @@ body.podohaeil {
   --line: rgba(119,149,237,.18);
   --line-soft: rgba(255,255,255,.065);
 
-  --art-bg: #2a28e3;
+  --art-bg: #2524d8;
 }
 
 ::selection {
@@ -119,6 +119,9 @@ body.podohaeil {
 ========================================================= */
 
 .left {
+  position: relative;
+  z-index: 5;
+
   min-height: 100svh;
 
   padding:
@@ -128,8 +131,6 @@ body.podohaeil {
 
   display: flex;
   flex-direction: column;
-
-  border-right: 1px solid var(--line);
 
   background:
     radial-gradient(
@@ -146,7 +147,7 @@ body.podohaeil {
 
 
 /* =========================================================
-   MODE SWITCH
+   SWITCH
 ========================================================= */
 
 .mode-switch {
@@ -196,7 +197,7 @@ body.podohaeil {
 
   box-shadow:
     inset 0 0 0 1px
-    rgba(var(--accent-rgb), .28);
+    rgba(var(--accent-rgb), .30);
 }
 
 
@@ -323,7 +324,6 @@ body.podohaeil {
 
 .menu-link:hover .menu-arrow {
   opacity: 1;
-
   transform: translateX(0);
 }
 
@@ -341,17 +341,18 @@ body.podohaeil {
   overflow: hidden;
 
   background: var(--art-bg);
-
-  transition: background .35s ease;
 }
 
+
+/* =========================================================
+   ART STAGE
+========================================================= */
+
 .art-stage {
+  --art-image: url("./pictures/1.jpg");
+
   position: absolute;
   inset: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   overflow: hidden;
 
@@ -360,33 +361,40 @@ body.podohaeil {
 
 
 /*
-   핵심:
-   cover가 아니라 contain.
-   캐릭터 머리/몸이 화면 밖으로 잘리지 않음.
+  뒤쪽을 같은 일러스트의 확대된 버전으로 채움.
+  빈 공간처럼 보이지 않게 하는 역할.
 */
 
-.main-illust {
-  width: 100%;
-  height: 100%;
+.art-stage::before {
+  content: "";
 
-  display: block;
+  position: absolute;
 
-  object-fit: contain;
-  object-position: center bottom;
+  inset: -35px;
 
-  transition:
-    opacity .28s ease,
-    transform .4s ease;
+  z-index: 0;
+
+  background-image:
+    var(--art-image);
+
+  background-size: cover;
+  background-position: center;
+
+  filter:
+    blur(24px)
+    brightness(.47)
+    saturate(.8);
+
+  transform: scale(1.08);
+
+  opacity: .72;
 }
 
-.main-illust.is-changing {
-  opacity: 0;
 
-  transform: scale(.985);
-}
-
-
-/* 아주 얕은 경계만 */
+/*
+  왼쪽은 배경과 자연스럽게 이어지도록
+  그라데이션을 덮음.
+*/
 
 .art-stage::after {
   content: "";
@@ -394,14 +402,58 @@ body.podohaeil {
   position: absolute;
   inset: 0;
 
+  z-index: 2;
+
   pointer-events: none;
 
   background:
     linear-gradient(
       90deg,
-      rgba(0,0,0,.10),
-      transparent 18%
+      rgba(0,0,0,.42) 0%,
+      rgba(0,0,0,.16) 18%,
+      transparent 42%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0,0,0,.11),
+      transparent 30%
     );
+}
+
+
+/*
+  실제 원본 그림.
+  오른쪽 끝에 붙이고,
+  절대 잘리지 않게 contain.
+*/
+
+.main-illust {
+  position: absolute;
+
+  z-index: 1;
+
+  top: 0;
+  right: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+  object-position: right bottom;
+
+  transition:
+    opacity .3s ease,
+    transform .4s ease;
+}
+
+.main-illust.is-changing {
+  opacity: 0;
+
+  transform:
+    translateX(12px)
+    scale(.99);
 }
 
 
@@ -420,26 +472,9 @@ body.podohaeil {
     inset: 0;
 
     z-index: -2;
-
-    border: 0;
-  }
-
-  .art-stage {
-    justify-content: flex-end;
-  }
-
-  .main-illust {
-    object-fit: cover;
-    object-position: 62% center;
-
-    opacity: .52;
   }
 
   .left {
-    position: relative;
-
-    z-index: 2;
-
     min-height: 100svh;
 
     padding:
@@ -447,26 +482,32 @@ body.podohaeil {
       25px
       34px;
 
-    border: 0;
-
     background:
       linear-gradient(
         90deg,
         var(--bg) 0%,
-        rgba(5,5,8,.88) 50%,
-        rgba(5,5,8,.25) 100%
+        rgba(5,5,8,.91) 48%,
+        rgba(5,5,8,.30) 100%
       ),
       linear-gradient(
         0deg,
         var(--bg) 0%,
-        transparent 58%
+        transparent 60%
       );
   }
 
   .content {
-    width: min(82%, 420px);
+    width: min(84%, 420px);
 
     padding: 100px 0 70px;
+  }
+
+  .main-illust {
+    width: 112%;
+
+    right: -12%;
+
+    opacity: .68;
   }
 
   .pair-name {
@@ -475,10 +516,6 @@ body.podohaeil {
 
   .catchphrase {
     font-size: 12px;
-  }
-
-  .menu {
-    margin-top: 45px;
   }
 
 }
@@ -504,16 +541,6 @@ body.podohaeil {
 
 }
 
-
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    transition-duration: .01ms !important;
-  }
-
-}
 </style>
 </head>
 
@@ -522,8 +549,6 @@ body.podohaeil {
 
 <main class="page">
 
-
-  <!-- LEFT -->
 
   <section class="left">
 
@@ -554,6 +579,7 @@ body.podohaeil {
 
 
     <div class="content">
+
 
       <h1
         class="pair-name"
@@ -644,17 +670,19 @@ body.podohaeil {
 
       </nav>
 
+
     </div>
 
   </section>
 
 
 
-  <!-- RIGHT -->
-
   <section class="right">
 
-    <div class="art-stage">
+    <div
+      class="art-stage"
+      id="artStage"
+    >
 
       <img
         id="mainIllust"
@@ -770,6 +798,11 @@ body.podohaeil {
       "mainIllust"
     );
 
+  const artStage =
+    document.getElementById(
+      "artStage"
+    );
+
   const mainLink =
     document.getElementById(
       "mainLink"
@@ -809,9 +842,7 @@ body.podohaeil {
       params.get("theme");
 
 
-    if (
-      DATA[query]
-    ) {
+    if (DATA[query]) {
       return query;
     }
 
@@ -823,9 +854,7 @@ body.podohaeil {
           "naru-current-mode"
         );
 
-      if (
-        DATA[saved]
-      ) {
+      if (DATA[saved]) {
         return saved;
       }
 
@@ -841,9 +870,7 @@ body.podohaeil {
     animate = true
   ) {
 
-    if (
-      !DATA[mode]
-    ) {
+    if (!DATA[mode]) {
       mode = "solmyeong";
     }
 
@@ -856,9 +883,7 @@ body.podohaeil {
       DATA[mode];
 
 
-    if (
-      animate
-    ) {
+    if (animate) {
 
       mainIllust.classList.add(
         "is-changing"
@@ -893,6 +918,12 @@ body.podohaeil {
 
         mainIllust.src =
           data.image;
+
+
+        artStage.style.setProperty(
+          "--art-image",
+          `url("${data.image}")`
+        );
 
 
         mainLink.href =
@@ -977,8 +1008,6 @@ body.podohaeil {
   );
 
 
-  /* PROFILE PASSWORD */
-
   profileLink.addEventListener(
     "click",
     event => {
@@ -1014,9 +1043,7 @@ body.podohaeil {
         );
 
 
-      if (
-        input === null
-      ) {
+      if (input === null) {
         return;
       }
 
