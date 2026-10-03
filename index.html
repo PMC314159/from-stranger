@@ -55,6 +55,15 @@ a {
   text-decoration: none;
 }
 
+img {
+  max-width: 100%;
+}
+
+::selection {
+  color: #fff;
+  background: var(--accent);
+}
+
 
 /* =========================================================
    THEME
@@ -64,27 +73,28 @@ body.solmyeong {
   --bg: #090606;
   --bg-soft: #110908;
 
-  --text: #f3eeee;
-  --muted: #9d8e8b;
+  --text: #f4efee;
+  --muted: #9f908d;
   --dim: #695c59;
 
   --accent: #c85047;
   --accent-light: #df685f;
-  --accent-rgb: 200, 80, 71;
+  --accent-rgb: 200,80,71;
 
   --line: rgba(222,112,101,.17);
   --line-soft: rgba(255,255,255,.065);
 
-  --art-bg: #78170f;
-  --art-dark: #24100d;
+  --art-bg: #77170f;
+  --art-panel: #28100d;
 }
+
 
 body.podohaeil {
   --bg: #060812;
   --bg-soft: #090d19;
 
   --text: #f0f3fa;
-  --muted: #939caf;
+  --muted: #949caf;
   --dim: #626a7e;
 
   --accent: #5779e8;
@@ -95,12 +105,7 @@ body.podohaeil {
   --line-soft: rgba(255,255,255,.065);
 
   --art-bg: #302bec;
-  --art-dark: #111631;
-}
-
-::selection {
-  color: #fff;
-  background: var(--accent);
+  --art-panel: #111730;
 }
 
 
@@ -109,14 +114,15 @@ body.podohaeil {
 ========================================================= */
 
 .page {
-  width: 100%;
   min-height: 100svh;
 
   display: grid;
 
   grid-template-columns:
-    minmax(430px, 46%)
-    minmax(0, 54%);
+    minmax(430px, 45%)
+    minmax(0, 55%);
+
+  overflow: hidden;
 }
 
 
@@ -126,23 +132,23 @@ body.podohaeil {
 
 .left {
   position: relative;
-  z-index: 5;
+  z-index: 3;
 
   min-height: 100svh;
 
   padding:
     clamp(34px, 4vw, 58px)
     clamp(48px, 5.5vw, 96px)
-    clamp(42px, 5vw, 70px);
+    clamp(42px, 5vw, 68px);
 
   display: flex;
   flex-direction: column;
 
   background:
     radial-gradient(
-      circle at 7% 8%,
+      circle at 8% 7%,
       rgba(var(--accent-rgb), .10),
-      transparent 27%
+      transparent 28%
     ),
     linear-gradient(
       145deg,
@@ -208,7 +214,7 @@ body.podohaeil {
 
 
 /* =========================================================
-   CONTENT
+   LEFT CONTENT
 ========================================================= */
 
 .content {
@@ -224,11 +230,12 @@ body.podohaeil {
   margin: 0;
 
   font-size:
-    clamp(50px, 5vw, 78px);
+    clamp(50px, 5vw, 76px);
 
   font-weight: 520;
 
-  line-height: .94;
+  line-height: .95;
+
   letter-spacing: -.065em;
 }
 
@@ -329,6 +336,7 @@ body.podohaeil {
 
 .menu-link:hover .menu-arrow {
   opacity: 1;
+
   transform: translateX(0);
 }
 
@@ -343,71 +351,124 @@ body.podohaeil {
   min-width: 0;
   min-height: 100svh;
 
+  padding:
+    clamp(28px, 3.2vw, 54px)
+    clamp(28px, 3.6vw, 64px)
+    clamp(28px, 3.2vw, 54px)
+    clamp(18px, 2vw, 34px);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
   overflow: hidden;
 
   background:
-    linear-gradient(
-      90deg,
-      var(--art-dark) 0%,
-      var(--art-bg) 26%,
-      var(--art-bg) 100%
-    );
+    radial-gradient(
+      circle at 72% 50%,
+      rgba(var(--accent-rgb), .10),
+      transparent 48%
+    ),
+    var(--bg);
+}
 
-  transition: background .35s ease;
+
+/* subtle separator */
+
+.right::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 8%;
+  bottom: 8%;
+
+  width: 1px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      var(--line),
+      transparent
+    );
 }
 
 
 /* =========================================================
-   ART
+   ART CARD
 ========================================================= */
 
-.art-stage {
-  position: absolute;
-  inset: 0;
+.art-card {
+  position: relative;
+
+  width: min(100%, 760px);
+  height: calc(100svh - clamp(56px, 7vw, 108px));
+
+  max-height: 900px;
+  min-height: 560px;
 
   overflow: hidden;
-}
 
-
-/*
-  검정/어두운 부분에서 그림 배경색으로
-  천천히 넘어가게 함.
-*/
-
-.art-stage::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  z-index: 2;
-
-  pointer-events: none;
+  border: 1px solid var(--line);
+  border-radius: 30px;
 
   background:
     linear-gradient(
-      90deg,
-      rgba(0,0,0,.58) 0%,
-      rgba(0,0,0,.36) 7%,
-      rgba(0,0,0,.19) 15%,
-      rgba(0,0,0,.07) 24%,
-      transparent 34%
-    );
+      145deg,
+      rgba(255,255,255,.025),
+      rgba(255,255,255,0)
+    ),
+    var(--art-panel);
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.22);
+
+  transition:
+    border-color .3s ease,
+    transform .3s ease,
+    background .35s ease;
+}
+
+.art-card:hover {
+  border-color:
+    rgba(var(--accent-rgb), .30);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   IMAGE AREA
+========================================================= */
+
+.art-image-wrap {
+  position: absolute;
+
+  inset: 18px;
+
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  background:
+    var(--art-bg);
+
+  transition:
+    background .35s ease;
 }
 
 
 /*
-  실제 그림.
-  오른쪽 끝에 붙이고 전신은 자르지 않음.
+  원본 일러스트를 통째로 보여줌.
+  잘라내지 않음.
 */
 
 .main-illust {
   position: absolute;
 
-  top: 0;
-  right: 0;
-
-  z-index: 1;
+  inset: 0;
 
   width: 100%;
   height: 100%;
@@ -415,6 +476,10 @@ body.podohaeil {
   display: block;
 
   object-fit: contain;
+
+  /*
+    캐릭터를 살짝 오른쪽 아래로.
+  */
   object-position: right bottom;
 
   transition:
@@ -427,75 +492,126 @@ body.podohaeil {
 
   transform:
     translateX(10px)
-    scale(.995);
+    scale(.99);
 }
 
 
 /* =========================================================
-   MOBILE
+   VERY SUBTLE CARD GRADIENT
+========================================================= */
+
+.art-image-wrap::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.10),
+      transparent 24%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0,0,0,.08),
+      transparent 24%
+    );
+}
+
+
+/* =========================================================
+   SMALL DECORATION
+========================================================= */
+
+.card-corner {
+  position: absolute;
+
+  z-index: 3;
+
+  right: 34px;
+  bottom: 31px;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  opacity: .72;
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
 ========================================================= */
 
 @media (max-width: 900px) {
 
   .page {
     display: block;
-  }
-
-  .right {
-    position: fixed;
-    inset: 0;
-
-    z-index: -2;
+    overflow: visible;
   }
 
   .left {
-    min-height: 100svh;
+    min-height: auto;
 
     padding:
       28px
       25px
-      34px;
-
-    background:
-      linear-gradient(
-        90deg,
-        var(--bg) 0%,
-        rgba(5,5,8,.91) 48%,
-        rgba(5,5,8,.28) 100%
-      ),
-      linear-gradient(
-        0deg,
-        var(--bg) 0%,
-        transparent 60%
-      );
+      42px;
   }
 
   .content {
-    width: min(84%, 420px);
+    width: min(100%, 470px);
 
-    padding: 100px 0 70px;
+    margin: 95px 0 0;
+
+    padding: 0;
   }
 
-  .main-illust {
-    width: 112%;
+  .right {
+    min-height: auto;
 
-    right: -12%;
+    padding:
+      0
+      20px
+      28px;
 
-    opacity: .66;
+    display: block;
+  }
+
+  .right::before {
+    display: none;
+  }
+
+  .art-card {
+    width: 100%;
+    height: min(78vh, 760px);
+
+    min-height: 520px;
+
+    margin: 0 auto;
   }
 
   .pair-name {
-    font-size: 50px;
-  }
-
-  .catchphrase {
-    font-size: 12px;
+    font-size: 52px;
   }
 
 }
 
 
-@media (max-width: 480px) {
+@media (max-width: 560px) {
+
+  .left {
+    padding:
+      22px
+      18px
+      34px;
+  }
 
   .mode-btn {
     min-width: 76px;
@@ -506,11 +622,35 @@ body.podohaeil {
   }
 
   .content {
-    width: 90%;
+    margin-top: 75px;
   }
 
   .pair-name {
     font-size: 44px;
+  }
+
+  .catchphrase {
+    font-size: 12px;
+  }
+
+  .right {
+    padding:
+      0
+      12px
+      18px;
+  }
+
+  .art-card {
+    min-height: 430px;
+    height: 68vh;
+
+    border-radius: 22px;
+  }
+
+  .art-image-wrap {
+    inset: 11px;
+
+    border-radius: 16px;
   }
 
 }
@@ -534,7 +674,9 @@ body.podohaeil {
 <main class="page">
 
 
-  <!-- LEFT -->
+  <!-- =====================================================
+       LEFT
+  ====================================================== -->
 
   <section class="left">
 
@@ -661,18 +803,26 @@ body.podohaeil {
 
 
 
-  <!-- RIGHT -->
+  <!-- =====================================================
+       RIGHT
+  ====================================================== -->
 
   <section class="right">
 
-    <div class="art-stage">
+    <div class="art-card">
 
-      <img
-        id="mainIllust"
-        class="main-illust"
-        src="./pictures/1.jpg"
-        alt=""
-      >
+      <div class="art-image-wrap">
+
+        <img
+          id="mainIllust"
+          class="main-illust"
+          src="./pictures/1.jpg"
+          alt=""
+        >
+
+      </div>
+
+      <div class="card-corner"></div>
 
     </div>
 
@@ -688,6 +838,10 @@ body.podohaeil {
 
   "use strict";
 
+
+  /* =========================================================
+     DATA
+  ========================================================= */
 
   const DATA = {
 
@@ -763,6 +917,10 @@ body.podohaeil {
   };
 
 
+  /* =========================================================
+     ELEMENTS
+  ========================================================= */
+
   const body =
     document.body;
 
@@ -808,6 +966,10 @@ body.podohaeil {
     getInitialMode();
 
 
+  /* =========================================================
+     INITIAL MODE
+  ========================================================= */
+
   function getInitialMode() {
 
     const params =
@@ -842,6 +1004,10 @@ body.podohaeil {
     return "solmyeong";
   }
 
+
+  /* =========================================================
+     RENDER
+  ========================================================= */
 
   function renderMode(
     mode,
@@ -890,6 +1056,7 @@ body.podohaeil {
         pairName.textContent =
           data.name;
 
+
         catchphrase.textContent =
           data.catchphrase;
 
@@ -901,8 +1068,10 @@ body.podohaeil {
         mainLink.href =
           data.main;
 
+
         profileLink.href =
           data.profile;
+
 
         dreamLink.href =
           data.dream;
@@ -962,6 +1131,10 @@ body.podohaeil {
   }
 
 
+  /* =========================================================
+     MODE SWITCH
+  ========================================================= */
+
   buttons.forEach(
     button => {
 
@@ -980,7 +1153,9 @@ body.podohaeil {
   );
 
 
-  /* PROFILE PASSWORD */
+  /* =========================================================
+     PROFILE PASSWORD
+  ========================================================= */
 
   profileLink.addEventListener(
     "click",
@@ -1022,9 +1197,7 @@ body.podohaeil {
       }
 
 
-      if (
-        input === data.password
-      ) {
+      if (input === data.password) {
 
         try {
 
@@ -1051,6 +1224,10 @@ body.podohaeil {
     }
   );
 
+
+  /* =========================================================
+     START
+  ========================================================= */
 
   renderMode(
     currentMode,
