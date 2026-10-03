@@ -86,7 +86,7 @@ img {
   --line: rgba(255,255,255,.09);
   --line-strong: rgba(255,255,255,.16);
 
-  --danger: #d45d5d;
+  --danger: #c86666;
 }
 
 
@@ -103,7 +103,7 @@ img {
 
   border-bottom: 1px solid var(--line);
 
-  background: rgba(0,0,0,.86);
+  background: rgba(0,0,0,.88);
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -117,35 +117,10 @@ img {
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 
-  gap: 30px;
+  gap: 34px;
 }
-
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo {
-  color: #777;
-
-  font-size: 11px;
-  font-weight: 600;
-
-  letter-spacing: .15em;
-
-  transition: color .2s ease;
-}
-
-.logo:hover {
-  color: #eee;
-}
-
-
-/* =========================================================
-   HEADER RIGHT
-========================================================= */
 
 .header-right {
   display: flex;
@@ -156,7 +131,7 @@ img {
 
 
 /* =========================================================
-   NAVIGATION
+   NAV
 ========================================================= */
 
 .main-nav {
@@ -171,7 +146,7 @@ img {
 
   padding: 25px 0 23px;
 
-  color: #6f6f6f;
+  color: #707070;
 
   font-size: 10px;
   font-weight: 650;
@@ -259,18 +234,20 @@ img {
 
 
 /* =========================================================
-   PAGE INTRO
+   PROFILE HEAD
 ========================================================= */
 
 .profile-head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, .55fr);
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(260px, .48fr);
 
   gap: 70px;
 
   align-items: end;
 
-  padding-bottom: 54px;
+  padding-bottom: 50px;
 
   border-bottom: 1px solid var(--line);
 }
@@ -289,7 +266,7 @@ img {
 .page-title {
   margin: 0;
 
-  font-size: clamp(55px, 6vw, 88px);
+  font-size: clamp(54px, 6vw, 88px);
   font-weight: 450;
 
   line-height: .92;
@@ -297,11 +274,11 @@ img {
 }
 
 .profile-side {
-  padding-bottom: 4px;
+  padding-bottom: 5px;
 }
 
 .profile-code {
-  color: #666;
+  color: #555;
 
   font-size: 9px;
   font-weight: 600;
@@ -312,23 +289,23 @@ img {
 .profile-side-name {
   margin-top: 12px;
 
-  color: #ddd;
+  color: #cfcfcf;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 550;
 }
 
 
 /* =========================================================
-   INTRO NOTICE
+   NOTE
 ========================================================= */
 
 .profile-note {
   margin-top: 28px;
 
-  max-width: 920px;
+  max-width: 900px;
 
-  color: #9b9b9b;
+  color: #929292;
 
   font-size: 13px;
   line-height: 1.85;
@@ -338,7 +315,7 @@ img {
 
 
 /* =========================================================
-   QUOTE
+   LEAD QUOTE
 ========================================================= */
 
 .lead-quote {
@@ -366,12 +343,12 @@ img {
 ========================================================= */
 
 .profile-section {
-  margin-top: 105px;
+  margin-top: 100px;
 }
 
 .section-head {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 105px 1fr;
 
   gap: 28px;
 
@@ -400,7 +377,7 @@ img {
 }
 
 .section-body {
-  margin-left: 148px;
+  margin-left: 133px;
   padding-top: 30px;
 }
 
@@ -436,7 +413,7 @@ img {
 }
 
 .prose-subtitle {
-  margin: 38px 0 22px;
+  margin: 42px 0 22px;
 
   color: #e5e5e5;
 
@@ -448,7 +425,7 @@ img {
 
 
 /* =========================================================
-   BASIC TABLE
+   BASIC
 ========================================================= */
 
 .basic-list {
@@ -547,6 +524,7 @@ img {
 
 .art-card:hover {
   border-color: rgba(255,255,255,.23);
+
   transform: translateY(-2px);
 }
 
@@ -559,7 +537,7 @@ img {
   object-fit: cover;
 
   filter:
-    saturate(.92)
+    saturate(.93)
     brightness(.92);
 
   transition:
@@ -611,7 +589,7 @@ img {
 
 
 /* =========================================================
-   QUOTES
+   QUOTE
 ========================================================= */
 
 .quote {
@@ -649,7 +627,7 @@ img {
 
 
 /* =========================================================
-   LONG IMAGE
+   LONG IMAGES
 ========================================================= */
 
 .long-images {
@@ -729,11 +707,6 @@ img {
   padding-top: 25px;
 
   border-top: 1px solid var(--line);
-
-  display: flex;
-  justify-content: space-between;
-
-  gap: 30px;
 
   color: #555;
 
@@ -934,16 +907,15 @@ img {
   .header-inner {
     min-height: auto;
 
-    padding: 17px 0;
-
-    align-items: flex-start;
+    padding: 16px 0;
   }
 
   .header-right {
-    flex-direction: column;
-    align-items: flex-end;
+    width: 100%;
 
-    gap: 11px;
+    justify-content: space-between;
+
+    gap: 20px;
   }
 
   .main-nav {
@@ -951,7 +923,7 @@ img {
   }
 
   .main-nav a {
-    padding: 1px 0 7px;
+    padding: 5px 0 7px;
 
     font-size: 9px;
   }
@@ -980,21 +952,13 @@ img {
     margin-left: 0;
   }
 
-  .art-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
 }
 
 
 @media (max-width: 620px) {
 
-  .logo {
-    display: none;
-  }
-
-  .header-inner {
-    justify-content: flex-end;
+  .header-right {
+    align-items: flex-end;
   }
 
   .mode-btn {
@@ -1004,7 +968,7 @@ img {
   }
 
   .page-title {
-    font-size: 53px;
+    font-size: 52px;
   }
 
   .profile-section {
@@ -1038,9 +1002,22 @@ img {
 }
 
 
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
+@media (max-width: 480px) {
+
+  .header-right {
+    flex-direction: column-reverse;
+  }
+
+  .mode-switch {
+    align-self: flex-end;
+  }
+
+  .main-nav {
+    align-self: flex-end;
+  }
+
+}
+
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -1114,15 +1091,6 @@ img {
 <header class="site-header">
 
   <div class="header-inner">
-
-    <a
-      class="logo"
-      id="homeLink"
-      href="../"
-    >
-      NARU.PUB
-    </a>
-
 
     <div class="header-right">
 
@@ -1198,8 +1166,6 @@ img {
 
   <footer class="footer">
 
-    <span>NARU.PUB</span>
-
     <span id="footerLabel">
       PROFILE / 無記錄
     </span>
@@ -1216,8 +1182,6 @@ img {
 
 <template id="template-solmyeong">
 
-
-  <!-- PROFILE HEAD -->
 
   <header class="profile-head">
 
@@ -1730,8 +1694,6 @@ img {
 <template id="template-podohaeil">
 
 
-  <!-- PROFILE HEAD -->
-
   <header class="profile-head">
 
     <div>
@@ -1776,7 +1738,7 @@ img {
 
 
 
-  <!-- MAIN ILLUSTRATION -->
+  <!-- ILLUSTRATION -->
 
   <section class="profile-section">
 
@@ -1881,7 +1843,9 @@ img {
 
         <div class="basic-row">
           <dt>캐치프레이즈</dt>
-          <dd>#해일의_파편</dd>
+          <dd>
+            #해일의_파편
+          </dd>
         </div>
 
       </dl>
@@ -1971,7 +1935,10 @@ img {
       </div>
 
 
-      <div class="prose" style="margin-top:30px;">
+      <div
+        class="prose"
+        style="margin-top:30px;"
+      >
 
         <p>
           칠흑색 머리카락에 군데 군데 섞인 새치들이 섞여있다.
@@ -2049,7 +2016,10 @@ img {
       </div>
 
 
-      <div class="prose" style="margin-top:34px;">
+      <div
+        class="prose"
+        style="margin-top:34px;"
+      >
 
 
         <div class="prose-subtitle">
@@ -2212,7 +2182,6 @@ img {
 
     <div class="section-body prose">
 
-
       <div class="quote">
         해일 요원님이요?
         언제나 웃음을 잃지 않은 긍정적인 분이시죠.
@@ -2244,7 +2213,8 @@ img {
 
       <p>
         활기차게 등장하여 유려한 말솜씨로 분위기를 끌어올리고
-        풀어주는 분위기 메이커. 그러나 그 속내는 결코 가볍지 않다.
+        풀어주는 분위기 메이커.
+        그러나 그 속내는 결코 가볍지 않다.
       </p>
 
     </div>
@@ -2253,7 +2223,7 @@ img {
 
 
 
-  <!-- ITEMS -->
+  <!-- ITEM -->
 
   <section class="profile-section">
 
@@ -2271,7 +2241,6 @@ img {
 
 
     <div class="section-body">
-
 
       <div class="art-grid single">
 
@@ -2296,7 +2265,10 @@ img {
       </div>
 
 
-      <div class="prose" style="margin-top:34px;">
+      <div
+        class="prose"
+        style="margin-top:34px;"
+      >
 
         <div class="prose-subtitle">
           ① 사영검(使靈劍)
@@ -2340,7 +2312,7 @@ img {
 
 
 
-  <!-- ADDITIONAL ILLUSTRATION -->
+  <!-- ADDITIONAL -->
 
   <section class="profile-section">
 
@@ -2486,7 +2458,7 @@ img {
 
 
   /* =======================================================
-     PROFILE DATA
+     DATA
   ======================================================= */
 
   const DATA = {
@@ -2544,61 +2516,88 @@ img {
   ======================================================= */
 
   const content =
-    document.getElementById("profileContent");
+    document.getElementById(
+      "profileContent"
+    );
 
   const mainLink =
-    document.getElementById("mainLink");
+    document.getElementById(
+      "mainLink"
+    );
 
   const profileLink =
-    document.getElementById("profileLink");
+    document.getElementById(
+      "profileLink"
+    );
 
   const dreamLink =
-    document.getElementById("dreamLink");
-
-  const homeLink =
-    document.getElementById("homeLink");
+    document.getElementById(
+      "dreamLink"
+    );
 
   const modeButtons =
-    [...document.querySelectorAll("[data-mode]")];
+    [
+      ...document.querySelectorAll(
+        "[data-mode]"
+      )
+    ];
 
   const footerLabel =
-    document.getElementById("footerLabel");
+    document.getElementById(
+      "footerLabel"
+    );
 
-
-  /* lock */
 
   const lockScreen =
-    document.getElementById("lockScreen");
+    document.getElementById(
+      "lockScreen"
+    );
 
   const lockForm =
-    document.getElementById("lockForm");
+    document.getElementById(
+      "lockForm"
+    );
 
   const passwordInput =
-    document.getElementById("passwordInput");
+    document.getElementById(
+      "passwordInput"
+    );
 
   const lockTitle =
-    document.getElementById("lockTitle");
+    document.getElementById(
+      "lockTitle"
+    );
 
   const lockText =
-    document.getElementById("lockText");
+    document.getElementById(
+      "lockText"
+    );
 
   const lockError =
-    document.getElementById("lockError");
+    document.getElementById(
+      "lockError"
+    );
 
-
-  /* popup */
 
   const popup =
-    document.getElementById("imagePopup");
+    document.getElementById(
+      "imagePopup"
+    );
 
   const popupImage =
-    document.getElementById("popupImage");
+    document.getElementById(
+      "popupImage"
+    );
 
   const popupCredit =
-    document.getElementById("popupCredit");
+    document.getElementById(
+      "popupCredit"
+    );
 
   const popupClose =
-    document.getElementById("popupClose");
+    document.getElementById(
+      "popupClose"
+    );
 
 
   let currentMode =
@@ -2606,7 +2605,7 @@ img {
 
 
   /* =======================================================
-     INITIAL MODE
+     GET MODE
   ======================================================= */
 
   function getInitialMode() {
@@ -2645,7 +2644,7 @@ img {
 
 
   /* =======================================================
-     PROFILE LOCK
+     LOCK
   ======================================================= */
 
   function isUnlocked(mode) {
@@ -2686,6 +2685,7 @@ img {
     const data =
       DATA[currentMode];
 
+
     lockTitle.textContent =
       `${data.pair} Profile`;
 
@@ -2703,6 +2703,7 @@ img {
 
     document.body.style.overflow =
       "hidden";
+
 
     setTimeout(
       () => passwordInput.focus(),
@@ -2726,7 +2727,9 @@ img {
   function updateLock() {
 
     if (
-      isUnlocked(currentMode)
+      isUnlocked(
+        currentMode
+      )
     ) {
 
       hideLock();
@@ -2746,6 +2749,7 @@ img {
 
       event.preventDefault();
 
+
       const data =
         DATA[currentMode];
 
@@ -2762,6 +2766,7 @@ img {
         hideLock();
 
         return;
+
       }
 
 
@@ -2775,7 +2780,7 @@ img {
 
 
   /* =======================================================
-     RENDER MODE
+     RENDER
   ======================================================= */
 
   function renderMode(
@@ -2796,13 +2801,13 @@ img {
       DATA[mode];
 
 
-    /* browser title */
+    /* tab title */
 
     document.title =
       data.title;
 
 
-    /* content */
+    /* template */
 
     const template =
       document.getElementById(
@@ -2819,7 +2824,7 @@ img {
       data.label;
 
 
-    /* links */
+    /* page links */
 
     mainLink.href =
       `../main/?theme=${mode}`;
@@ -2830,11 +2835,8 @@ img {
     dreamLink.href =
       `../dream/?theme=${mode}`;
 
-    homeLink.href =
-      `../?mode=${mode}`;
 
-
-    /* mode buttons */
+    /* buttons */
 
     modeButtons.forEach(
       button => {
@@ -2846,15 +2848,6 @@ img {
           "active",
           active
         );
-
-
-        /*
-          기존 페이지처럼
-          현재 모드를 왼쪽에 표시
-        */
-
-        button.style.order =
-          active ? "0" : "1";
 
       }
     );
@@ -2872,7 +2865,7 @@ img {
     } catch (error) {}
 
 
-    /* query */
+    /* URL */
 
     const url =
       new URL(
@@ -2895,8 +2888,12 @@ img {
     );
 
 
-    if (checkPassword) {
+    if (
+      checkPassword
+    ) {
+
       updateLock();
+
     }
 
   }
@@ -2916,18 +2913,24 @@ img {
           const mode =
             button.dataset.mode;
 
+
           if (
             mode === currentMode
           ) {
+
             return;
+
           }
 
+
           closePopup();
+
 
           renderMode(
             mode,
             true
           );
+
 
           window.scrollTo({
             top: 0,
@@ -2987,12 +2990,6 @@ img {
   }
 
 
-  /*
-    profileContent 안쪽은
-    mode 변경 때 계속 새로 렌더링되므로
-    event delegation 사용
-  */
-
   content.addEventListener(
     "click",
     event => {
@@ -3001,6 +2998,7 @@ img {
         event.target.closest(
           "[data-src]"
         );
+
 
       if (!target) {
         return;
@@ -3065,7 +3063,6 @@ img {
 
 })();
 </script>
-
 
 </body>
 </html>
