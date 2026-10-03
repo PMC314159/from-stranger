@@ -57,7 +57,6 @@ a {
 
 img {
   display: block;
-  max-width: 100%;
 }
 
 ::selection {
@@ -117,9 +116,9 @@ body::before {
 
   background:
     radial-gradient(
-      circle at 50% 38%,
+      circle at 52% 42%,
       var(--accent-soft),
-      transparent 34%
+      transparent 35%
     ),
     linear-gradient(
       145deg,
@@ -138,7 +137,7 @@ body::before {
   min-height: 100svh;
 
   padding:
-    clamp(32px, 5vh, 68px)
+    clamp(30px, 5vh, 62px)
     32px;
 
   display: flex;
@@ -148,21 +147,20 @@ body::before {
 
 
 /*
-  핵심:
-  왼쪽/오른쪽이 화면 끝으로 흩어지지 않고
-  하나의 중앙 그룹처럼 보이도록 폭 제한.
+  두 요소가 화면 양끝으로 벌어지지 않도록
+  전체 폭을 제한.
 */
 
 .home-inner {
-  width: min(1160px, 100%);
+  width: min(1180px, 100%);
 
   display: grid;
 
   grid-template-columns:
-    minmax(330px, 390px)
-    minmax(440px, 570px);
+    minmax(320px, 390px)
+    minmax(0, 650px);
 
-  gap: clamp(48px, 6vw, 86px);
+  gap: clamp(50px, 7vw, 95px);
 
   align-items: center;
   justify-content: center;
@@ -170,7 +168,7 @@ body::before {
 
 
 /* =========================================================
-   LEFT CONTENT
+   INFO
 ========================================================= */
 
 .home-info {
@@ -192,11 +190,11 @@ body::before {
   border: 1px solid var(--line);
   border-radius: 999px;
 
-  background: rgba(0,0,0,.16);
+  background: rgba(0,0,0,.15);
 }
 
 .mode-btn {
-  min-width: 83px;
+  min-width: 82px;
 
   padding: 7px 14px;
 
@@ -231,11 +229,11 @@ body::before {
 
 
 /* =========================================================
-   PAIR
+   PAIR INFO
 ========================================================= */
 
 .pair-content {
-  margin-top: 76px;
+  margin-top: 72px;
 }
 
 .pair-name {
@@ -244,16 +242,16 @@ body::before {
   color: var(--text);
 
   font-size:
-    clamp(56px, 5.5vw, 82px);
+    clamp(54px, 5.2vw, 78px);
 
   font-weight: 500;
 
-  line-height: .92;
+  line-height: .93;
   letter-spacing: -.065em;
 }
 
 .catchphrase {
-  margin-top: 25px;
+  margin-top: 23px;
 
   color: var(--muted);
 
@@ -266,27 +264,27 @@ body::before {
 }
 
 .accent-line {
-  width: 43px;
+  width: 42px;
   height: 1px;
 
-  margin-top: 32px;
+  margin-top: 31px;
 
   background: var(--accent);
 }
 
 
 /* =========================================================
-   NAV
+   MENU
 ========================================================= */
 
 .menu {
-  margin-top: 52px;
+  margin-top: 50px;
 
   border-top: 1px solid var(--line);
 }
 
 .menu-link {
-  min-height: 57px;
+  min-height: 56px;
 
   display: flex;
   align-items: center;
@@ -324,11 +322,12 @@ body::before {
   padding-left: 8px;
   padding-right: 8px;
 
-  background: rgba(255,255,255,.015);
+  background: rgba(255,255,255,.014);
 }
 
 .menu-link:hover .menu-arrow {
   opacity: 1;
+
   transform: translateX(0);
 }
 
@@ -341,86 +340,58 @@ body::before {
   min-width: 0;
 
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 
 /*
-  일러스트 자체가 블럭.
-  바깥쪽 별도 카드 없음.
+  ★ 핵심 ★
+
+  별도의 정사각형 카드 없음.
+  이미지 자체가 곧 블럭.
+
+  width / height 모두 auto이므로
+  원본 비율을 100% 유지함.
 */
 
-.visual-block {
-  position: relative;
+.main-illust {
+  width: auto;
+  height: auto;
 
-  width: min(100%, 560px);
-
-  aspect-ratio: 1 / 1;
-
-  overflow: hidden;
+  /*
+    공간에 맞춰 축소만 함.
+    확대해서 자르지 않음.
+  */
+  max-width: 100%;
+  max-height: 76svh;
 
   border: 1px solid var(--line);
   border-radius: 30px;
 
-  background: #080808;
+  object-fit: contain;
 
   box-shadow:
-    0 24px 70px rgba(0,0,0,.22);
+    0 25px 75px rgba(0,0,0,.25);
 
   transition:
-    transform .3s ease,
-    border-color .3s ease;
+    opacity .28s ease,
+    transform .35s ease,
+    border-color .25s ease;
 }
 
-.visual-block:hover {
+.main-illust:hover {
   transform: translateY(-3px);
 
   border-color: var(--accent);
 }
 
-
-.main-illust {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  transition:
-    opacity .28s ease,
-    transform .45s ease;
-}
-
-.visual-block:hover .main-illust {
-  transform: scale(1.012);
-}
-
 .main-illust.is-changing {
   opacity: 0;
-}
 
-
-/*
-  이미지 위에 거의 안 보일 정도의
-  얕은 톤 정리만.
-*/
-
-.visual-block::after {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      0deg,
-      rgba(0,0,0,.09),
-      transparent 27%
-    );
+  transform:
+    translateY(0)
+    scale(.985);
 }
 
 
@@ -442,7 +413,7 @@ body::before {
 
     grid-template-columns: 1fr;
 
-    gap: 54px;
+    gap: 52px;
   }
 
   .home-info {
@@ -452,15 +423,18 @@ body::before {
   }
 
   .pair-content {
-    margin-top: 68px;
+    margin-top: 65px;
   }
 
   .visual-wrap {
     width: 100%;
   }
 
-  .visual-block {
-    width: min(100%, 620px);
+  .main-illust {
+    max-width: min(100%, 650px);
+    max-height: none;
+
+    margin: 0 auto;
   }
 
 }
@@ -476,11 +450,11 @@ body::before {
     padding:
       22px
       16px
-      26px;
+      28px;
   }
 
   .home-inner {
-    gap: 40px;
+    gap: 38px;
   }
 
   .mode-btn {
@@ -492,11 +466,11 @@ body::before {
   }
 
   .pair-content {
-    margin-top: 58px;
+    margin-top: 56px;
   }
 
   .pair-name {
-    font-size: 48px;
+    font-size: 47px;
   }
 
   .catchphrase {
@@ -504,15 +478,15 @@ body::before {
   }
 
   .menu {
-    margin-top: 42px;
+    margin-top: 41px;
   }
 
   .menu-link {
-    min-height: 53px;
+    min-height: 52px;
   }
 
-  .visual-block {
-    border-radius: 22px;
+  .main-illust {
+    border-radius: 21px;
   }
 
 }
@@ -662,21 +636,18 @@ body::before {
 
 
     <!-- =====================================================
-         VISUAL
+         ILLUSTRATION
+         이미지 자체가 블럭
     ====================================================== -->
 
     <section class="visual-wrap">
 
-      <div class="visual-block">
-
-        <img
-          id="mainIllust"
-          class="main-illust"
-          src="./pictures/1.jpg"
-          alt=""
-        >
-
-      </div>
+      <img
+        id="mainIllust"
+        class="main-illust"
+        src="./pictures/1.jpg"
+        alt="솔명 메인 일러스트"
+      >
 
     </section>
 
@@ -712,12 +683,8 @@ body::before {
       image:
         "./pictures/1.jpg",
 
-      /*
-        정사각형 블럭 안에서
-        인물 위주로 보이도록 위치.
-      */
-      imagePosition:
-        "76% center",
+      alt:
+        "솔명 메인 일러스트",
 
       main:
         "./main/?theme=solmyeong",
@@ -754,8 +721,8 @@ body::before {
       image:
         "./pictures/2.jpg",
 
-      imagePosition:
-        "70% center",
+      alt:
+        "포도해일 메인 일러스트",
 
       main:
         "./main/?theme=podohaeil",
@@ -823,7 +790,7 @@ body::before {
 
 
   /* =========================================================
-     GET MODE
+     INITIAL MODE
   ========================================================= */
 
   function getInitialMode() {
@@ -920,12 +887,17 @@ body::before {
           data.catchphrase;
 
 
+        /*
+          crop 없음.
+          이미지 원본 비율 그대로 교체.
+        */
+
         mainIllust.src =
           data.image;
 
 
-        mainIllust.style.objectPosition =
-          data.imagePosition;
+        mainIllust.alt =
+          data.alt;
 
 
         mainLink.href =
@@ -999,7 +971,7 @@ body::before {
 
 
   /* =========================================================
-     SWITCH
+     MODE SWITCH
   ========================================================= */
 
   buttons.forEach(
