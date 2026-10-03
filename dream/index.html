@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>솔명 · DREAM</title>
+
+<style>
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  font-family:
+    "Pretendard",
+    "Noto Sans KR",
+    "Apple SD Gothic Neo",
+    sans-serif;
+
+  color: var(--text);
+  background: var(--bg);
+
+  transition:
+    background .35s ease,
+    color .35s ease;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  color: #fff;
+  background: var(--accent);
+}
+
+
+/* =========================================================
+   THEMES
+========================================================= */
+
+body.solmyeong {
+  --bg: #080606;
+  --bg-soft: #100908;
+
+  --panel: #0e0a0a;
+  --panel-hover: #15100f;
+
+  --text: #f4efee;
+  --muted: #9b8e8c;
+  --dim: #695c5a;
+
+  --accent: #c84f46;
+  --accent-light: #df675e;
+  --accent-rgb: 200, 79, 70;
+
+  --line: rgba(220,110,100,.17);
+  --line-soft: rgba(255,255,255,.065);
+}
+
+body.podohaeil {
+  --bg: #060812;
+  --bg-soft: #090e1b;
+
+  --panel: #0a0e18;
+  --panel-hover: #101625;
+
+  --text: #f0f3fa;
+  --muted: #939caf;
+  --dim: #626a7d;
+
+  --accent: #5779e8;
+  --accent-light: #7792ef;
+  --accent-rgb: 87, 121, 232;
+
+  --line: rgba(120,150,237,.18);
+  --line-soft: rgba(255,255,255,.065);
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  z-index: -2;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 78% 8%,
+      rgba(var(--accent-rgb), .12),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 7% 55%,
+      rgba(var(--accent-rgb), .055),
+      transparent 32%
+    ),
+    linear-gradient(
+      140deg,
+      var(--bg-soft),
+      var(--bg) 60%
+    );
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+
+  z-index: 50;
+
+  width: 100%;
+
+  border-bottom: 1px solid var(--line);
+
+  background: rgba(6,6,8,.80);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.header-inner {
+  width: min(1340px, calc(100% - 64px));
+  min-height: 68px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 34px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+
+  gap: 34px;
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.main-nav {
+  display: flex;
+  align-items: center;
+
+  gap: 27px;
+}
+
+.main-nav a {
+  position: relative;
+
+  padding: 25px 0 23px;
+
+  color: var(--dim);
+
+  font-size: 10px;
+  font-weight: 650;
+
+  letter-spacing: .15em;
+
+  transition: color .2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--text);
+}
+
+.main-nav a.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -1px;
+
+  height: 1px;
+
+  background: var(--accent);
+}
+
+
+/* =========================================================
+   MODE SWITCH
+========================================================= */
+
+.mode-switch {
+  display: flex;
+  align-items: center;
+
+  padding: 3px;
+
+  border: 1px solid var(--line);
+  border-radius: 999px;
+
+  background: rgba(0,0,0,.22);
+}
+
+.mode-btn {
+  padding: 7px 13px;
+
+  border-radius: 999px;
+
+  color: var(--dim);
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 10px;
+  font-weight: 650;
+
+  transition:
+    color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.mode-btn:hover {
+  color: var(--text);
+}
+
+.mode-btn.active {
+  color: var(--text);
+
+  background:
+    rgba(var(--accent-rgb), .13);
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(var(--accent-rgb), .32);
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+  width: min(1340px, calc(100% - 64px));
+
+  margin: 0 auto;
+
+  padding: 88px 0 150px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.dream-head {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(280px, .42fr);
+
+  gap: 70px;
+
+  align-items: end;
+
+  padding-bottom: 54px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.page-label {
+  margin-bottom: 17px;
+
+  color: var(--accent);
+
+  font-size: 9px;
+  font-weight: 650;
+
+  letter-spacing: .25em;
+}
+
+.page-title {
+  margin: 0;
+
+  font-size: clamp(60px, 7vw, 100px);
+  font-weight: 300;
+
+  line-height: .9;
+  letter-spacing: -.065em;
+}
+
+.dream-side {
+  padding-bottom: 5px;
+}
+
+.pair-name {
+  color: var(--text);
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.catchphrase {
+  margin-top: 11px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+  line-height: 1.7;
+
+  word-break: keep-all;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.gallery-info {
+  margin-top: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  color: var(--dim);
+
+  font-size: 10px;
+
+  letter-spacing: .07em;
+}
+
+.gallery-count {
+  color: var(--accent);
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery {
+  margin-top: 62px;
+
+  columns: 2;
+  column-gap: 18px;
+}
+
+.dream-card {
+  position: relative;
+
+  width: 100%;
+
+  display: block;
+
+  margin: 0 0 18px;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  break-inside: avoid;
+
+  border: 1px solid var(--line);
+  border-radius: 20px;
+
+  background: var(--panel);
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    transform .28s ease,
+    border-color .28s ease,
+    background .28s ease;
+}
+
+.dream-card:hover {
+  transform: translateY(-3px);
+
+  border-color:
+    rgba(var(--accent-rgb), .38);
+
+  background: var(--panel-hover);
+}
+
+.image-box {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #050505;
+}
+
+.image-box img {
+  width: 100%;
+  height: auto;
+
+  display: block;
+
+  filter:
+    saturate(.93)
+    brightness(.91);
+
+  transition:
+    transform .45s ease,
+    filter .35s ease;
+}
+
+.dream-card:hover img {
+  transform: scale(1.012);
+
+  filter:
+    saturate(1)
+    brightness(.98);
+}
+
+
+/* subtle image fade */
+
+.image-box::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      0deg,
+      rgba(0,0,0,.17),
+      transparent 28%
+    );
+}
+
+
+/* =========================================================
+   CARD INFO
+========================================================= */
+
+.card-info {
+  min-height: 58px;
+
+  padding: 14px 15px 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  border-top: 1px solid var(--line-soft);
+}
+
+.card-index {
+  color: var(--dim);
+
+  font-size: 9px;
+
+  letter-spacing: .13em;
+}
+
+.card-credit {
+  color: var(--muted);
+
+  font-size: 10px;
+  font-weight: 550;
+}
+
+.card-arrow {
+  color: var(--accent);
+
+  font-size: 13px;
+
+  opacity: 0;
+
+  transform: translate(-5px, 3px);
+
+  transition:
+    opacity .2s ease,
+    transform .2s ease;
+}
+
+.dream-card:hover .card-arrow {
+  opacity: 1;
+
+  transform: translate(0, 0);
+}
+
+
+/* =========================================================
+   EMPTY / LOADING
+========================================================= */
+
+.gallery-empty {
+  padding: 90px 0;
+
+  color: var(--muted);
+
+  text-align: center;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  margin-top: 100px;
+
+  padding-top: 24px;
+
+  border-top: 1px solid var(--line);
+
+  color: var(--dim);
+
+  font-size: 9px;
+
+  letter-spacing: .15em;
+}
+
+
+/* =========================================================
+   POPUP
+========================================================= */
+
+.popup {
+  position: fixed;
+  inset: 0;
+
+  z-index: 200;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 32px;
+
+  background: rgba(0,0,0,.91);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.popup.open {
+  display: flex;
+}
+
+.popup-inner {
+  position: relative;
+
+  max-width: min(1200px, 92vw);
+  max-height: 92vh;
+}
+
+.popup-image {
+  display: block;
+
+  max-width: 100%;
+  max-height: 84vh;
+
+  object-fit: contain;
+
+  border: 1px solid rgba(255,255,255,.11);
+}
+
+.popup-bottom {
+  margin-top: 11px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.popup-number {
+  color: #666;
+
+  font-size: 9px;
+
+  letter-spacing: .16em;
+}
+
+.popup-credit {
+  color: #999;
+
+  font-size: 11px;
+}
+
+.popup-close {
+  position: absolute;
+
+  top: -17px;
+  right: -17px;
+
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid rgba(255,255,255,.20);
+  border-radius: 50%;
+
+  color: #eee;
+  background: #080808;
+
+  cursor: pointer;
+
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .header-inner,
+  .page {
+    width: min(100% - 36px, 1340px);
+  }
+
+  .header-inner {
+    min-height: auto;
+
+    padding: 16px 0;
+  }
+
+  .header-right {
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+  .main-nav {
+    gap: 16px;
+  }
+
+  .main-nav a {
+    padding: 5px 0 7px;
+
+    font-size: 9px;
+  }
+
+  .page {
+    padding-top: 62px;
+  }
+
+  .dream-head {
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+  }
+
+  .dream-side {
+    padding: 0;
+  }
+
+  .gallery {
+    margin-top: 46px;
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  .header-right {
+    gap: 15px;
+  }
+
+  .mode-btn {
+    padding: 6px 10px;
+
+    font-size: 9px;
+  }
+
+  .page-title {
+    font-size: 62px;
+  }
+
+  .gallery {
+    columns: 1;
+  }
+
+  .gallery-info {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 7px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .header-right {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+
+  .main-nav {
+    align-self: flex-end;
+  }
+
+  .mode-switch {
+    align-self: flex-end;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+  }
+
+}
+</style>
+</head>
+
+
+<body class="solmyeong">
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header class="site-header">
+
+  <div class="header-inner">
+
+    <div class="header-right">
+
+
+      <nav
+        class="main-nav"
+        aria-label="페이지 메뉴"
+      >
+
+        <a
+          id="mainLink"
+          href="../main/?theme=solmyeong"
+        >
+          MAIN
+        </a>
+
+        <a
+          id="profileLink"
+          href="../profile/?theme=solmyeong"
+        >
+          PROFILE
+        </a>
+
+        <a
+          id="dreamLink"
+          class="active"
+          href="../dream/?theme=solmyeong"
+        >
+          DREAM
+        </a>
+
+      </nav>
+
+
+      <div
+        class="mode-switch"
+        aria-label="모드 전환"
+      >
+
+        <button
+          type="button"
+          class="mode-btn"
+          data-mode="solmyeong"
+        >
+          솔명
+        </button>
+
+        <button
+          type="button"
+          class="mode-btn"
+          data-mode="podohaeil"
+        >
+          포도해일
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<!-- =======================================================
+     PAGE
+======================================================= -->
+
+<main class="page">
+
+
+  <header class="dream-head">
+
+    <div>
+
+      <div
+        class="page-label"
+        id="pageLabel"
+      >
+        SOLMYEONG / DREAM
+      </div>
+
+      <h1 class="page-title">
+        Dream
+      </h1>
+
+    </div>
+
+
+    <div class="dream-side">
+
+      <div
+        class="pair-name"
+        id="pairName"
+      >
+        솔명
+      </div>
+
+      <div
+        class="catchphrase"
+        id="catchphrase"
+      >
+        수레바퀴 위의 에트랑제
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <div class="gallery-info">
+
+    <div>
+      일러스트를 누르면 전체 이미지를 볼 수 있습니다.
+    </div>
+
+    <div
+      class="gallery-count"
+      id="galleryCount"
+    >
+      05 ILLUSTRATIONS
+    </div>
+
+  </div>
+
+
+
+  <section
+    class="gallery"
+    id="gallery"
+    aria-label="드림 일러스트"
+  ></section>
+
+
+
+  <footer
+    class="footer"
+    id="footerLabel"
+  >
+    SOLMYEONG / DREAM
+  </footer>
+
+</main>
+
+
+
+<!-- =======================================================
+     POPUP
+======================================================= -->
+
+<div
+  class="popup"
+  id="imagePopup"
+  aria-hidden="true"
+>
+
+  <div class="popup-inner">
+
+    <button
+      class="popup-close"
+      id="popupClose"
+      type="button"
+      aria-label="닫기"
+    >
+      ×
+    </button>
+
+    <img
+      class="popup-image"
+      id="popupImage"
+      src=""
+      alt="전체 이미지"
+    >
+
+    <div class="popup-bottom">
+
+      <div
+        class="popup-number"
+        id="popupNumber"
+      ></div>
+
+      <div
+        class="popup-credit"
+        id="popupCredit"
+      ></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+(() => {
+
+  "use strict";
+
+
+  /* =======================================================
+     DATA
+  ======================================================= */
+
+  const DATA = {
+
+    solmyeong: {
+
+      bodyClass:
+        "solmyeong",
+
+      title:
+        "솔명 · DREAM",
+
+      label:
+        "SOLMYEONG / DREAM",
+
+      pair:
+        "솔명",
+
+      catchphrase:
+        "수레바퀴 위의 에트랑제",
+
+      profilePassword:
+        "nameless0414",
+
+      profileKey:
+        "profile-solmyeong",
+
+      images: [
+
+        {
+          src: "../pictures/8.png",
+          artist: "도련님"
+        },
+
+        {
+          src: "../pictures/9.png",
+          artist: "넬레님"
+        },
+
+        {
+          src: "../pictures/10.png",
+          artist: "알수없음님"
+        },
+
+        {
+          src: "../pictures/11.png",
+          artist: "알수없음님"
+        },
+
+        {
+          src: "../pictures/12.png",
+          artist: "도련님"
+        }
+
+      ]
+
+    },
+
+
+    podohaeil: {
+
+      bodyClass:
+        "podohaeil",
+
+      title:
+        "포도해일 · DREAM",
+
+      label:
+        "PODOHAEIL / DREAM",
+
+      pair:
+        "포도해일",
+
+      catchphrase:
+        "녹슨 용골과 빛바랜 돛의 도해渡海",
+
+      profilePassword:
+        "seawave0414",
+
+      profileKey:
+        "profile-podohaeil",
+
+      images: [
+
+        {
+          src: "../pictures/13.png",
+          artist: "알수없음님"
+        },
+
+        {
+          src: "../pictures/14.png",
+          artist: "알수없음님"
+        },
+
+        {
+          src: "../pictures/15.png",
+          artist: "도련님"
+        },
+
+        {
+          src: "../pictures/16.png",
+          artist: "하제님"
+        }
+
+      ]
+
+    }
+
+  };
+
+
+  /* =======================================================
+     ELEMENTS
+  ======================================================= */
+
+  const body =
+    document.body;
+
+  const mainLink =
+    document.getElementById(
+      "mainLink"
+    );
+
+  const profileLink =
+    document.getElementById(
+      "profileLink"
+    );
+
+  const dreamLink =
+    document.getElementById(
+      "dreamLink"
+    );
+
+  const modeButtons =
+    [
+      ...document.querySelectorAll(
+        "[data-mode]"
+      )
+    ];
+
+  const pageLabel =
+    document.getElementById(
+      "pageLabel"
+    );
+
+  const pairName =
+    document.getElementById(
+      "pairName"
+    );
+
+  const catchphrase =
+    document.getElementById(
+      "catchphrase"
+    );
+
+  const gallery =
+    document.getElementById(
+      "gallery"
+    );
+
+  const galleryCount =
+    document.getElementById(
+      "galleryCount"
+    );
+
+  const footerLabel =
+    document.getElementById(
+      "footerLabel"
+    );
+
+
+  /* popup */
+
+  const popup =
+    document.getElementById(
+      "imagePopup"
+    );
+
+  const popupImage =
+    document.getElementById(
+      "popupImage"
+    );
+
+  const popupCredit =
+    document.getElementById(
+      "popupCredit"
+    );
+
+  const popupNumber =
+    document.getElementById(
+      "popupNumber"
+    );
+
+  const popupClose =
+    document.getElementById(
+      "popupClose"
+    );
+
+
+  let currentMode =
+    getInitialMode();
+
+
+  /* =======================================================
+     INITIAL MODE
+  ======================================================= */
+
+  function getInitialMode() {
+
+    const params =
+      new URLSearchParams(
+        location.search
+      );
+
+    const query =
+      params.get("theme") ||
+      params.get("mode");
+
+
+    if (DATA[query]) {
+      return query;
+    }
+
+
+    try {
+
+      const saved =
+        localStorage.getItem(
+          "naru-current-mode"
+        );
+
+
+      if (DATA[saved]) {
+        return saved;
+      }
+
+    } catch (error) {}
+
+
+    return "solmyeong";
+  }
+
+
+  /* =======================================================
+     GALLERY
+  ======================================================= */
+
+  function renderGallery(images) {
+
+    gallery.innerHTML =
+      "";
+
+
+    images.forEach(
+      (item, index) => {
+
+        const number =
+          String(index + 1)
+            .padStart(2, "0");
+
+
+        const card =
+          document.createElement(
+            "button"
+          );
+
+
+        card.type =
+          "button";
+
+        card.className =
+          "dream-card";
+
+        card.dataset.src =
+          item.src;
+
+        card.dataset.artist =
+          item.artist;
+
+        card.dataset.number =
+          number;
+
+
+        card.innerHTML = `
+          <div class="image-box">
+
+            <img
+              src="${item.src}"
+              alt="${DATA[currentMode].pair} 드림 일러스트 ${index + 1}"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="card-info">
+
+            <span class="card-index">
+              ${number}
+            </span>
+
+            <span class="card-credit">
+              © ${item.artist}
+            </span>
+
+            <span class="card-arrow">
+              ↗
+            </span>
+
+          </div>
+        `;
+
+
+        gallery.appendChild(
+          card
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     MODE
+  ======================================================= */
+
+  function renderMode(mode) {
+
+    if (!DATA[mode]) {
+      mode = "solmyeong";
+    }
+
+
+    currentMode =
+      mode;
+
+
+    const data =
+      DATA[mode];
+
+
+    /* body */
+
+    body.classList.remove(
+      "solmyeong",
+      "podohaeil"
+    );
+
+    body.classList.add(
+      data.bodyClass
+    );
+
+
+    /* browser tab */
+
+    document.title =
+      data.title;
+
+
+    /* heading */
+
+    pageLabel.textContent =
+      data.label;
+
+    pairName.textContent =
+      data.pair;
+
+    catchphrase.textContent =
+      data.catchphrase;
+
+    footerLabel.textContent =
+      data.label;
+
+
+    /* count */
+
+    galleryCount.textContent =
+      `${String(data.images.length).padStart(2, "0")} ILLUSTRATIONS`;
+
+
+    /* links */
+
+    mainLink.href =
+      `../main/?theme=${mode}`;
+
+    profileLink.href =
+      `../profile/?theme=${mode}`;
+
+    dreamLink.href =
+      `../dream/?theme=${mode}`;
+
+
+    /* switch */
+
+    modeButtons.forEach(
+      button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.mode === mode
+        );
+
+      }
+    );
+
+
+    /* gallery */
+
+    renderGallery(
+      data.images
+    );
+
+
+    /* save */
+
+    try {
+
+      localStorage.setItem(
+        "naru-current-mode",
+        mode
+      );
+
+    } catch (error) {}
+
+
+    /* url */
+
+    const url =
+      new URL(
+        location.href
+      );
+
+    url.searchParams.delete(
+      "mode"
+    );
+
+    url.searchParams.set(
+      "theme",
+      mode
+    );
+
+    history.replaceState(
+      null,
+      "",
+      url
+    );
+
+  }
+
+
+  /* =======================================================
+     SWITCH
+  ======================================================= */
+
+  modeButtons.forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          const mode =
+            button.dataset.mode;
+
+
+          if (
+            mode === currentMode
+          ) {
+            return;
+          }
+
+
+          closePopup();
+
+
+          renderMode(
+            mode
+          );
+
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
+        }
+      );
+
+    }
+  );
+
+
+  /* =======================================================
+     PROFILE PASSWORD
+  ======================================================= */
+
+  profileLink.addEventListener(
+    "click",
+    event => {
+
+      event.preventDefault();
+
+
+      const data =
+        DATA[currentMode];
+
+
+      try {
+
+        if (
+          sessionStorage.getItem(
+            data.profileKey
+          ) === "ok"
+        ) {
+
+          location.href =
+            profileLink.href;
+
+          return;
+        }
+
+      } catch (error) {}
+
+
+      const input =
+        prompt(
+          `${data.pair} Profile 비밀번호를 입력하세요.`
+        );
+
+
+      if (
+        input === null
+      ) {
+        return;
+      }
+
+
+      if (
+        input ===
+        data.profilePassword
+      ) {
+
+        try {
+
+          sessionStorage.setItem(
+            data.profileKey,
+            "ok"
+          );
+
+        } catch (error) {}
+
+
+        location.href =
+          profileLink.href;
+
+        return;
+
+      }
+
+
+      alert(
+        "비밀번호가 틀렸습니다."
+      );
+
+    }
+  );
+
+
+  /* =======================================================
+     POPUP
+  ======================================================= */
+
+  function openPopup(
+    src,
+    artist,
+    number
+  ) {
+
+    popupImage.src =
+      src;
+
+    popupCredit.textContent =
+      artist
+        ? `© ${artist}`
+        : "";
+
+    popupNumber.textContent =
+      number
+        ? `IMAGE / ${number}`
+        : "";
+
+    popup.classList.add(
+      "open"
+    );
+
+    popup.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+
+    document.body.style.overflow =
+      "hidden";
+
+  }
+
+
+  function closePopup() {
+
+    popup.classList.remove(
+      "open"
+    );
+
+    popup.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    popupImage.src =
+      "";
+
+    document.body.style.overflow =
+      "";
+
+  }
+
+
+  gallery.addEventListener(
+    "click",
+    event => {
+
+      const card =
+        event.target.closest(
+          ".dream-card"
+        );
+
+
+      if (!card) {
+        return;
+      }
+
+
+      openPopup(
+        card.dataset.src,
+        card.dataset.artist,
+        card.dataset.number
+      );
+
+    }
+  );
+
+
+  popupClose.addEventListener(
+    "click",
+    closePopup
+  );
+
+
+  popup.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target === popup
+      ) {
+
+        closePopup();
+
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        closePopup();
+
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     START
+  ======================================================= */
+
+  renderMode(
+    currentMode
+  );
+
+})();
+</script>
+
+</body>
+</html>
