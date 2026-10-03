@@ -1,0 +1,3071 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>솔명 · PROFILE / 無記錄</title>
+
+<style>
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  font-family:
+    "Pretendard",
+    "Noto Sans KR",
+    "Apple SD Gothic Neo",
+    sans-serif;
+
+  color: #f1f1f1;
+  background: #000;
+}
+
+button,
+input,
+a {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+::selection {
+  color: #000;
+  background: #eee;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+  --bg: #000;
+  --panel: #070707;
+  --panel-soft: #0b0b0b;
+
+  --text: #f1f1f1;
+  --muted: #989898;
+  --dim: #606060;
+
+  --line: rgba(255,255,255,.09);
+  --line-strong: rgba(255,255,255,.16);
+
+  --danger: #d45d5d;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  width: 100%;
+
+  border-bottom: 1px solid var(--line);
+
+  background: rgba(0,0,0,.86);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.header-inner {
+  width: min(1280px, calc(100% - 64px));
+  min-height: 68px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+  color: #777;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: .15em;
+
+  transition: color .2s ease;
+}
+
+.logo:hover {
+  color: #eee;
+}
+
+
+/* =========================================================
+   HEADER RIGHT
+========================================================= */
+
+.header-right {
+  display: flex;
+  align-items: center;
+
+  gap: 34px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.main-nav {
+  display: flex;
+  align-items: center;
+
+  gap: 27px;
+}
+
+.main-nav a {
+  position: relative;
+
+  padding: 25px 0 23px;
+
+  color: #6f6f6f;
+
+  font-size: 10px;
+  font-weight: 650;
+
+  letter-spacing: .15em;
+
+  transition: color .2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: #eee;
+}
+
+.main-nav a.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -1px;
+
+  height: 1px;
+
+  background: #e5e5e5;
+}
+
+
+/* =========================================================
+   MODE SWITCH
+========================================================= */
+
+.mode-switch {
+  display: flex;
+  align-items: center;
+
+  padding: 3px;
+
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+
+  background: #030303;
+}
+
+.mode-btn {
+  padding: 7px 13px;
+
+  border-radius: 999px;
+
+  color: #666;
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 10px;
+  font-weight: 650;
+
+  transition:
+    color .2s ease,
+    background .2s ease;
+}
+
+.mode-btn:hover {
+  color: #ccc;
+}
+
+.mode-btn.active {
+  color: #050505;
+  background: #ededed;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+  width: min(1280px, calc(100% - 64px));
+
+  margin: 0 auto;
+
+  padding: 90px 0 150px;
+}
+
+
+/* =========================================================
+   PAGE INTRO
+========================================================= */
+
+.profile-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, .55fr);
+
+  gap: 70px;
+
+  align-items: end;
+
+  padding-bottom: 54px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.page-label {
+  margin-bottom: 17px;
+
+  color: #777;
+
+  font-size: 10px;
+  font-weight: 650;
+
+  letter-spacing: .25em;
+}
+
+.page-title {
+  margin: 0;
+
+  font-size: clamp(55px, 6vw, 88px);
+  font-weight: 450;
+
+  line-height: .92;
+  letter-spacing: -.065em;
+}
+
+.profile-side {
+  padding-bottom: 4px;
+}
+
+.profile-code {
+  color: #666;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: .22em;
+}
+
+.profile-side-name {
+  margin-top: 12px;
+
+  color: #ddd;
+
+  font-size: 14px;
+  font-weight: 550;
+}
+
+
+/* =========================================================
+   INTRO NOTICE
+========================================================= */
+
+.profile-note {
+  margin-top: 28px;
+
+  max-width: 920px;
+
+  color: #9b9b9b;
+
+  font-size: 13px;
+  line-height: 1.85;
+
+  word-break: keep-all;
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.lead-quote {
+  margin-top: 42px;
+
+  padding: 25px 32px;
+
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+
+  color: #b9b9b9;
+  background: #050505;
+
+  text-align: center;
+
+  font-size: 14px;
+  line-height: 1.85;
+
+  word-break: keep-all;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.profile-section {
+  margin-top: 105px;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+
+  gap: 28px;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.section-index {
+  color: #555;
+
+  font-size: 9px;
+
+  letter-spacing: .18em;
+}
+
+.section-title {
+  margin: 0;
+
+  color: #e9e9e9;
+
+  font-size: 13px;
+  font-weight: 650;
+
+  letter-spacing: .16em;
+}
+
+.section-body {
+  margin-left: 148px;
+  padding-top: 30px;
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.prose {
+  max-width: 900px;
+
+  color: #aaa;
+
+  font-size: 14px;
+  line-height: 1.95;
+
+  word-break: keep-all;
+}
+
+.prose p {
+  margin: 0 0 18px;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.prose strong,
+.prose b {
+  color: #ececec;
+
+  font-weight: 650;
+}
+
+.prose-subtitle {
+  margin: 38px 0 22px;
+
+  color: #e5e5e5;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  letter-spacing: -.02em;
+}
+
+
+/* =========================================================
+   BASIC TABLE
+========================================================= */
+
+.basic-list {
+  max-width: 900px;
+
+  margin: 0;
+}
+
+.basic-row {
+  display: grid;
+  grid-template-columns: 155px 1fr;
+
+  gap: 24px;
+
+  padding: 17px 0;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.basic-row:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.basic-row dt {
+  margin: 0;
+
+  color: #717171;
+
+  font-size: 11px;
+  font-weight: 650;
+
+  letter-spacing: .06em;
+}
+
+.basic-row dd {
+  margin: 0;
+
+  color: #c8c8c8;
+
+  font-size: 14px;
+  line-height: 1.75;
+
+  word-break: keep-all;
+}
+
+
+/* =========================================================
+   ART
+========================================================= */
+
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+
+  max-width: 880px;
+}
+
+.art-grid.single {
+  grid-template-columns: 1fr;
+
+  max-width: 760px;
+}
+
+.art-card {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 4 / 5;
+
+  overflow: hidden;
+
+  padding: 0;
+
+  border: 1px solid var(--line);
+  border-radius: 18px;
+
+  background: #080808;
+
+  cursor: pointer;
+
+  transition:
+    border-color .25s ease,
+    transform .25s ease;
+}
+
+.art-card.wide {
+  aspect-ratio: 16 / 9;
+}
+
+.art-card.fit {
+  aspect-ratio: auto;
+}
+
+.art-card:hover {
+  border-color: rgba(255,255,255,.23);
+  transform: translateY(-2px);
+}
+
+.art-card img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  filter:
+    saturate(.92)
+    brightness(.92);
+
+  transition:
+    transform .35s ease,
+    filter .35s ease;
+}
+
+.art-card.fit img {
+  height: auto;
+
+  object-fit: contain;
+
+  background: #050505;
+}
+
+.art-card:hover img {
+  transform: scale(1.015);
+
+  filter:
+    saturate(1)
+    brightness(1);
+}
+
+.art-credit {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 2;
+
+  padding: 32px 14px 12px;
+
+  color: #eee;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  text-align: left;
+
+  background:
+    linear-gradient(
+      0deg,
+      rgba(0,0,0,.78),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   QUOTES
+========================================================= */
+
+.quote {
+  max-width: 900px;
+
+  margin: 30px 0;
+
+  padding: 22px 25px;
+
+  border-left: 1px solid #555;
+
+  color: #aaa;
+  background: #050505;
+
+  font-size: 13px;
+  line-height: 1.9;
+
+  word-break: keep-all;
+}
+
+.quote.center {
+  border-left: 0;
+
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+
+  text-align: center;
+}
+
+.quote.red {
+  color: #c76565;
+
+  font-weight: 650;
+}
+
+
+/* =========================================================
+   LONG IMAGE
+========================================================= */
+
+.long-images {
+  max-width: 900px;
+
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 34px;
+}
+
+.long-figure {
+  margin: 0;
+}
+
+.long-image-button {
+  width: 100%;
+
+  display: block;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.long-image-button img {
+  width: 100%;
+  height: auto;
+
+  display: block;
+
+  border: 1px solid var(--line);
+}
+
+.long-credit {
+  margin-top: 8px;
+
+  color: #666;
+
+  font-size: 10px;
+
+  text-align: right;
+}
+
+
+/* =========================================================
+   SPOILER
+========================================================= */
+
+.spoiler {
+  max-width: 900px;
+
+  margin-bottom: 25px;
+
+  color: #c76565;
+
+  font-size: 12px;
+  font-weight: 650;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  margin-top: 140px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid var(--line);
+
+  display: flex;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  color: #555;
+
+  font-size: 9px;
+
+  letter-spacing: .15em;
+}
+
+
+/* =========================================================
+   POPUP
+========================================================= */
+
+.popup {
+  position: fixed;
+  inset: 0;
+
+  z-index: 200;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background: rgba(0,0,0,.91);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.popup.open {
+  display: flex;
+}
+
+.popup-inner {
+  position: relative;
+
+  max-width: min(1100px, 92vw);
+  max-height: 92vh;
+}
+
+.popup-image {
+  display: block;
+
+  max-width: 100%;
+  max-height: 84vh;
+
+  object-fit: contain;
+}
+
+.popup-credit {
+  margin-top: 10px;
+
+  color: #888;
+
+  font-size: 11px;
+
+  text-align: right;
+}
+
+.popup-close {
+  position: absolute;
+
+  top: -17px;
+  right: -17px;
+
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+
+  color: #eee;
+  background: #080808;
+
+  cursor: pointer;
+
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   LOCK
+========================================================= */
+
+.lock-screen {
+  position: fixed;
+  inset: 0;
+
+  z-index: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: #000;
+}
+
+.lock-card {
+  width: min(400px, 100%);
+
+  padding: 34px;
+
+  border: 1px solid var(--line-strong);
+
+  background: #050505;
+}
+
+.lock-label {
+  margin-bottom: 16px;
+
+  color: #666;
+
+  font-size: 9px;
+  font-weight: 650;
+
+  letter-spacing: .22em;
+}
+
+.lock-card h2 {
+  margin: 0;
+
+  color: #eee;
+
+  font-size: 27px;
+  font-weight: 500;
+
+  letter-spacing: -.035em;
+}
+
+.lock-card p {
+  margin: 12px 0 24px;
+
+  color: #777;
+
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.lock-card input {
+  width: 100%;
+
+  padding: 13px 14px;
+
+  border: 1px solid var(--line-strong);
+
+  outline: none;
+
+  color: #eee;
+  background: #000;
+}
+
+.lock-card input:focus {
+  border-color: #555;
+}
+
+.lock-card button {
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 13px;
+
+  color: #080808;
+  background: #eee;
+
+  cursor: pointer;
+
+  font-weight: 650;
+}
+
+.lock-error {
+  min-height: 18px;
+
+  margin: 11px 0 0 !important;
+
+  color: #b95d5d !important;
+
+  font-size: 11px !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .header-inner,
+  .page {
+    width: min(100% - 36px, 1280px);
+  }
+
+  .header-inner {
+    min-height: auto;
+
+    padding: 17px 0;
+
+    align-items: flex-start;
+  }
+
+  .header-right {
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: 11px;
+  }
+
+  .main-nav {
+    gap: 16px;
+  }
+
+  .main-nav a {
+    padding: 1px 0 7px;
+
+    font-size: 9px;
+  }
+
+  .page {
+    padding-top: 62px;
+  }
+
+  .profile-head {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+  }
+
+  .profile-side {
+    padding: 0;
+  }
+
+  .section-head {
+    grid-template-columns: 70px 1fr;
+
+    gap: 18px;
+  }
+
+  .section-body {
+    margin-left: 0;
+  }
+
+  .art-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+@media (max-width: 620px) {
+
+  .logo {
+    display: none;
+  }
+
+  .header-inner {
+    justify-content: flex-end;
+  }
+
+  .mode-btn {
+    padding: 6px 10px;
+
+    font-size: 9px;
+  }
+
+  .page-title {
+    font-size: 53px;
+  }
+
+  .profile-section {
+    margin-top: 80px;
+  }
+
+  .art-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .basic-row {
+    grid-template-columns: 1fr;
+
+    gap: 7px;
+  }
+
+  .lead-quote {
+    padding: 22px 18px;
+
+    font-size: 12px;
+  }
+
+  .section-head {
+    display: block;
+  }
+
+  .section-index {
+    margin-bottom: 10px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+  }
+
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     LOCK
+======================================================= -->
+
+<div
+  class="lock-screen"
+  id="lockScreen"
+  hidden
+>
+
+  <form
+    class="lock-card"
+    id="lockForm"
+  >
+
+    <div class="lock-label">
+      PRIVATE PROFILE
+    </div>
+
+    <h2 id="lockTitle">
+      Profile
+    </h2>
+
+    <p id="lockText">
+      프로필 비밀번호를 입력해주세요.
+    </p>
+
+    <input
+      id="passwordInput"
+      type="password"
+      autocomplete="current-password"
+      aria-label="비밀번호"
+    >
+
+    <button type="submit">
+      OPEN PROFILE
+    </button>
+
+    <p
+      class="lock-error"
+      id="lockError"
+    ></p>
+
+  </form>
+
+</div>
+
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header class="site-header">
+
+  <div class="header-inner">
+
+    <a
+      class="logo"
+      id="homeLink"
+      href="../"
+    >
+      NARU.PUB
+    </a>
+
+
+    <div class="header-right">
+
+
+      <nav
+        class="main-nav"
+        aria-label="페이지 메뉴"
+      >
+
+        <a
+          id="mainLink"
+          href="../main/?theme=solmyeong"
+        >
+          MAIN
+        </a>
+
+        <a
+          class="active"
+          id="profileLink"
+          href="../profile/?theme=solmyeong"
+        >
+          PROFILE
+        </a>
+
+        <a
+          id="dreamLink"
+          href="../dream/?theme=solmyeong"
+        >
+          DREAM
+        </a>
+
+      </nav>
+
+
+      <div
+        class="mode-switch"
+        id="modeSwitch"
+      >
+
+        <button
+          type="button"
+          class="mode-btn"
+          data-mode="solmyeong"
+        >
+          솔명
+        </button>
+
+        <button
+          type="button"
+          class="mode-btn"
+          data-mode="podohaeil"
+        >
+          포도해일
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<!-- =======================================================
+     PAGE
+======================================================= -->
+
+<main class="page">
+
+  <div id="profileContent"></div>
+
+  <footer class="footer">
+
+    <span>NARU.PUB</span>
+
+    <span id="footerLabel">
+      PROFILE / 無記錄
+    </span>
+
+  </footer>
+
+</main>
+
+
+
+<!-- =======================================================
+     SOLMYEONG TEMPLATE
+======================================================= -->
+
+<template id="template-solmyeong">
+
+
+  <!-- PROFILE HEAD -->
+
+  <header class="profile-head">
+
+    <div>
+
+      <div class="page-label">
+        PROFILE / 無記錄
+      </div>
+
+      <h1 class="page-title">
+        염해솔
+      </h1>
+
+    </div>
+
+
+    <div class="profile-side">
+
+      <div class="profile-code">
+        CHARACTER FILE
+      </div>
+
+      <div class="profile-side-name">
+        염해솔 · 無記錄
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <div class="lead-quote">
+    너만은 내 '이름'을 알고있잖니.
+  </div>
+
+
+
+  <!-- ILLUSTRATION -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        01
+      </div>
+
+      <h2 class="section-title">
+        ILLUSTRATION
+      </h2>
+
+    </header>
+
+
+    <div class="section-body">
+
+      <div class="art-grid">
+
+        <button
+          type="button"
+          class="art-card"
+          data-src="../pictures/17.png"
+          data-artist="도련님"
+        >
+
+          <img
+            src="../pictures/17.png"
+            alt="염해솔 프로필 일러스트"
+          >
+
+          <div class="art-credit">
+            © 도련님
+          </div>
+
+        </button>
+
+
+        <button
+          type="button"
+          class="art-card"
+          data-src="../pictures/18.png"
+          data-artist="응구님"
+        >
+
+          <img
+            src="../pictures/18.png"
+            alt="염해솔 프로필 일러스트"
+          >
+
+          <div class="art-credit">
+            © 응구님
+          </div>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- BASIC -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        02
+      </div>
+
+      <h2 class="section-title">
+        BASIC
+      </h2>
+
+    </header>
+
+
+    <div class="section-body">
+
+      <dl class="basic-list">
+
+        <div class="basic-row">
+          <dt>이름</dt>
+          <dd>염해솔(廉海率)</dd>
+        </div>
+
+        <div class="basic-row">
+          <dt>연령</dt>
+          <dd>30대 초반</dd>
+        </div>
+
+        <div class="basic-row">
+          <dt>신장 및 체격</dt>
+          <dd>158cm / 52kg</dd>
+        </div>
+
+        <div class="basic-row">
+          <dt>Keyword</dt>
+          <dd>
+            #냉철한 #의뭉스러운 #지략가 #직설적인
+            #빙의 #트립 #이방인
+          </dd>
+        </div>
+
+        <div class="basic-row">
+          <dt>Catchphrase</dt>
+          <dd>
+            #여백의_관찰자 #無記錄
+          </dd>
+        </div>
+
+      </dl>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- INTRODUCTION -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        03
+      </div>
+
+      <h2 class="section-title">
+        INTRODUCTION
+      </h2>
+
+    </header>
+
+
+    <div class="section-body prose">
+
+      <p>
+        약칭 '괴담출근'에 등장하는 작중 비공식 캐릭터.
+      </p>
+
+      <p>
+        김솔음과 같은 《어둠탐사기록》 밖에서 온 존재로 서술되며,
+        이야기는 주인공인 솔음의 시점으로 전개되기에 상세한 내막까지는
+        설명되지 않으나, 확실한 것은 그녀 또한 이 세계에 본래 있던
+        존재가 아니며, 원래 있던 세계로 돌아가고자 한다는 것이다.
+      </p>
+
+      <p>
+        어떤 이유인지 작중 인물들은 그녀의 이름을 보고 듣고 말할 수 있지만,
+        서술로써 풀어지는 순간 그녀의 이름은 ■■ 으로 블러처리 되어
+        알아볼 수 없게 되어버린다. 솔음의 서술에서는 통칭
+        '무명(無名)'으로 지칭하는 편이며 이름이 들리지 않고 볼 수 없는
+        이유는 차츰 '괴담출근'이 전개되며 풀어지지 않을까 하는
+        추측만이 있을 뿐이다.
+      </p>
+
+      <p>
+        본래라면 어제와 다를 바 없이 이어졌을 일상.
+        그곳에 두고 온 운명과 삶.
+      </p>
+
+      <p>
+        어느 것 하나 놓칠 수 없었던, 스스로 움켜 쥔 뒤바꾼 운명을
+        다시 되찾기 위해 주인공 김솔음과 본래 세계로 돌아가기 위해
+        고군분투 하는 이야기.
+      </p>
+
+      <p>
+        -그리하여, 해당 기록은 주인공의 서술 아래,
+        전개상 불필요한 서술 아래 가려진 "존재"에 대한 보다 자세한
+        내막을 기재하고자 한다.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- APPEARANCE -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        04
+      </div>
+
+      <h2 class="section-title">
+        외관
+      </h2>
+
+    </header>
+
+
+    <div class="section-body prose">
+
+      <p>
+        -나이는 약 30대 추정.
+        외모 자체는 동안이라 20대 중~후반 정도로 보인다고 한다.
+      </p>
+
+      <p>
+        머리부터 발끝까지 무채색의 향연. 그 중에서 유일하게 유채색으로
+        눈에 띄는 것은 한쪽으로 땋은 머리에 덧대어 스타일리시하게
+        내려 묶은 화려한 패턴의 푸른 스카프일 것이다.
+        직장인의 상징인 정장, 곱슬기가 있는 칠흑의 머리카락은 숱이 많아
+        제법 폭신하기까지 해보이는 장발은 타인 기준 왼쪽으로 땋아
+        가슴까지 늘어뜨린 모습으로 여타의 뚜렷한 개성이나 특징이 없으나
+        유일하게 눈에 띄는 장신구는 그녀의 동물 가면에서 따 온
+        '가젤'이라는 특징만큼 '푸른 스카프'로도 기억하는 편이다.
+      </p>
+
+      <p>
+        -중간 중간 희끗한 흰색 머리카락이 브릿지처럼 섞여있다.
+        아래로 내려갈수록 비율이 커지는데, 노화때문은 아니라고 한다.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- AFFILIATION -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        05
+      </div>
+
+      <h2 class="section-title">
+        소속
+      </h2>
+
+    </header>
+
+
+    <div class="section-body prose">
+
+      <p>
+        -백일몽 주식회사 현상탐사팀, E조의 17기 신입사원.
+        가면은 가젤이다.
+      </p>
+
+      <div class="quote center">
+        안녕, 김솔음. 나는 널 잘 알고있어.
+        ...그리고 너의 비밀도.
+        <br><br>
+        이러면 어때? 나의 비밀을 알려줄테니,
+        우리 한 배를 타자.
+        <br><br>
+        -'괴담에 떨어져도 출근을 해야하는 구나' 中 발췌
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- PERSONALITY -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        06
+      </div>
+
+      <h2 class="section-title">
+        성격 / 성향
+      </h2>
+
+    </header>
+
+
+    <div class="section-body prose">
+
+      <p>
+        -얌전해 보이는 순한 인상과 달리, 활달하고 털털하며
+        제법 거친 성격이라는 솔음의 짧은 서술에서 볼 수 있듯,
+        그저 가만히 있지는 않는 적극적인 성격.
+      </p>
+
+      <p>
+        -철혈같다는 표현이 자주 등장한다.
+        어떤 상황에서도 크게 무너지거나 흔들리는 모습 없이
+        냉철함을 유지하는 사람.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- STORY -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        07
+      </div>
+
+      <h2 class="section-title">
+        지금까지의 이야기
+      </h2>
+
+    </header>
+
+
+    <div class="section-body prose">
+
+      <p>
+        ※ 본 드림 서사는 괴담출근 기반,
+        자체적인 오리지널 설정이 들어간 세계관입니다.
+      </p>
+
+      <p>
+        ※ 화산귀환 드림과 이어지는 크로스오버 드림으로,
+        일부 서사가 연결됩니다.
+      </p>
+
+      <p>
+        수백 년 전 중원의 작은 해양지방 마을에서 해녀(海女)로
+        태어난 소녀는, 모든 것을 걸고 운명을 바꾼 뒤 수백 년 후
+        어느 현대인의 몸에서 깨어났다고 한다.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- PART 2 -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        08
+      </div>
+
+      <h2 class="section-title">
+        제 2부
+      </h2>
+
+    </header>
+
+
+    <div class="section-body">
+
+      <div class="spoiler">
+        ※ 2부 중~후반부의 중요 스포일러를 포함하고 있습니다.
+        열람에 주의해주세요.
+      </div>
+
+
+      <div class="long-images">
+
+        <figure class="long-figure">
+
+          <button
+            class="long-image-button"
+            type="button"
+            data-src="../pictures/20.jpg"
+          >
+            <img
+              src="../pictures/20.jpg"
+              alt="제 2부 기록 1"
+            >
+          </button>
+
+        </figure>
+
+
+        <figure class="long-figure">
+
+          <button
+            class="long-image-button"
+            type="button"
+            data-src="../pictures/21.jpg"
+          >
+            <img
+              src="../pictures/21.jpg"
+              alt="제 2부 기록 2"
+            >
+          </button>
+
+        </figure>
+
+
+        <figure class="long-figure">
+
+          <button
+            class="long-image-button"
+            type="button"
+            data-src="../pictures/22.jpg"
+          >
+            <img
+              src="../pictures/22.jpg"
+              alt="제 2부 기록 3"
+            >
+          </button>
+
+        </figure>
+
+
+        <figure class="long-figure">
+
+          <button
+            class="long-image-button"
+            type="button"
+            data-src="../pictures/23.jpg"
+          >
+            <img
+              src="../pictures/23.jpg"
+              alt="제 2부 기록 4"
+            >
+          </button>
+
+        </figure>
+
+
+        <figure class="long-figure">
+
+          <button
+            class="long-image-button"
+            type="button"
+            data-src="../pictures/24.jpg"
+          >
+            <img
+              src="../pictures/24.jpg"
+              alt="제 2부 기록 5"
+            >
+          </button>
+
+        </figure>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</template>
+
+
+
+<!-- =======================================================
+     PODOHAEIL TEMPLATE
+======================================================= -->
+
+<template id="template-podohaeil">
+
+
+  <!-- PROFILE HEAD -->
+
+  <header class="profile-head">
+
+    <div>
+
+      <div class="page-label">
+        PROFILE / 海溢
+      </div>
+
+      <h1 class="page-title">
+        김해솔
+      </h1>
+
+    </div>
+
+
+    <div class="profile-side">
+
+      <div class="profile-code">
+        CHARACTER FILE
+      </div>
+
+      <div class="profile-side-name">
+        김해솔 · 海溢
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <div class="profile-note">
+    ※ 김솔음이 백일몽과 관련 없이 '포도' 요원인 재관국 설정의
+    이야기입니다. 원작 전개 외의 서브 서사로 진행되는 점
+    참고 부탁 드립니다.
+  </div>
+
+
+  <div class="lead-quote">
+    중요한 것은, 후회하지 않기 위해 선택하고 걸어가는 거야.
+  </div>
+
+
+
+  <!-- MAIN ILLUSTRATION -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        01
+      </div>
+
+      <h2 class="section-title">
+        ILLUSTRATION
+      </h2>
+
+    </header>
+
+
+    <div class="section-body">
+
+      <div class="art-grid single">
+
+        <button
+          type="button"
+          class="art-card wide"
+          data-src="../pictures/19.png"
+          data-artist="engo님"
+        >
+
+          <img
+            src="../pictures/19.png"
+            alt="김해솔 프로필 일러스트"
+          >
+
+          <div class="art-credit">
+            © engo님
+          </div>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- BASIC -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        02
+      </div>
+
+      <h2 class="section-title">
+        BASIC
+      </h2>
+
+    </header>
+
+
+    <div class="section-body">
+
+      <dl class="basic-list">
+
+        <div class="basic-row">
+          <dt>이름</dt>
+          <dd>김해솔(金海率)</dd>
+        </div>
+
+        <div class="basic-row">
+          <dt>나이</dt>
+          <dd>30대 중반</dd>
+        </div>
+
+        <div class="basic-row">
+          <dt>소속</dt>
+          <dd>
+            초자연재난관리국 출동구조반 현무 3팀
+            (직급 : 주무관)
+          </dd>
+        </div>
+
+        <div class="basic-row">
+          <dt>요원명</dt>
+          <dd>해일(海溢)</dd>
+        </div>
+
+        <div class="basic-row">
+          <dt>신장</dt>
+          <dd>158cm / 54kg</dd>
+        </div>
+
+        <div class="basic-row">
+          <dt>인물 키워드</dt>
+          <dd>
+            #바다 #파도 #강인한 #양육자 #재관국 #가족
+          </dd>
+        </div>
+
+        <div class="basic-row">
+          <dt>캐치프레이즈</dt>
+          <dd>#해일의_파편</dd>
+        </div>
+
+      </dl>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- INTRODUCTION -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        03
+      </div>
+
+      <h2 class="section-title">
+        INTRODUCTION
+      </h2>
+
+    </header>
+
+
+    <div class="section-body prose">
+
+      <p>
+        초창기 어둠탐사기록에 등장하는 네임드 요원 중 한 명.
+        코드네임 포도 요원과 남매라는 설정이 큰 특징이다.
+      </p>
+
+      <p>
+        포도 요원과 해일 요원을 조합으로 묶어
+        "요원 남매", 혹은 "요원 남매 포도해일"이라고
+        부르기도 한다.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- APPEARANCE -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        04
+      </div>
+
+      <h2 class="section-title">
+        一. 외관
+      </h2>
+
+    </header>
+
+
+    <div class="section-body">
+
+
+      <div class="art-grid single">
+
+        <button
+          type="button"
+          class="art-card fit"
+          data-src="../pictures/20.png"
+          data-artist="이서님"
+        >
+
+          <img
+            src="../pictures/20.png"
+            alt="김해솔 외관 일러스트"
+          >
+
+          <div class="art-credit">
+            © 이서님
+          </div>
+
+        </button>
+
+      </div>
+
+
+      <div class="prose" style="margin-top:30px;">
+
+        <p>
+          칠흑색 머리카락에 군데 군데 섞인 새치들이 섞여있다.
+          머리 길이는 목 뒤를 살짝 덮을 만큼 짧게 자른
+          곱슬 머리카락.
+        </p>
+
+        <p>
+          타인 기준 왼쪽 정수리부터 귀 아래까지 땋은 머리를
+          붉은색 댕기로 묶어 늘어뜨렸다. 피처럼 진한 붉은 댕기와
+          오른쪽 귀에 차고 있는 붉은 술 귀걸이가 특징적이며,
+          축사가 된 검증된 정신 방어용 장비라고 한다.
+        </p>
+
+        <p>
+          모종의 재난으로 인해 탐사자들에게는 이름과 외형이
+          인식되지 않는다. 이름은 블러 처리 되고,
+          외형은 노이즈 낀 모습으로 떠올려진다.
+        </p>
+
+        <p>
+          작중 인물들의 표현을 빌리면 핏기가 없는 창백한 피부와
+          서늘한 분위기, 미소를 띄면 호쾌해지는 시원스러운 미소가
+          인상적인 또렷한 이목구비의 미인에 가까운 외형이다.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- STORY -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        05
+      </div>
+
+      <h2 class="section-title">
+        二. 지금까지의 이야기
+      </h2>
+
+    </header>
+
+
+    <div class="section-body">
+
+
+      <div class="art-grid single">
+
+        <button
+          type="button"
+          class="art-card wide"
+          data-src="../pictures/21.png"
+          data-artist="MELM님"
+        >
+
+          <img
+            src="../pictures/21.png"
+            alt="포도해일 서사 일러스트"
+          >
+
+          <div class="art-credit">
+            © MELM님
+          </div>
+
+        </button>
+
+      </div>
+
+
+      <div class="prose" style="margin-top:34px;">
+
+
+        <div class="prose-subtitle">
+          part 1. 단란한 가족
+        </div>
+
+        <p>
+          1남 1녀, 4인 구성의 모난 곳 없는 평범한 가족이었다.
+        </p>
+
+        <p>
+          평범한 가정의 장녀로 태어난 김해솔은 밝고 쾌활한 소녀였다.
+          부모님은 일로 인해 자주 집을 비우셨지만,
+          아이들과 최대한 오래 시간을 보내려 노력하는
+          다정한 사람들이었다.
+        </p>
+
+        <p>
+          소녀의 나이 여덟, 동생 김솔음이 태어난다.
+          처음 동생을 안아본 소녀는 이 작은 아이를
+          무슨 일이 있어도 지켜주겠다고 마음먹는다.
+        </p>
+
+        <div class="quote center">
+          -해솔아, 네 동생이야.<br>
+          -해솔이가 잘 돌보고 지켜줄 수 있지?
+          <br><br>
+          "솔음아, 누나가 꼭 널 지켜줄게.
+          건강하게 자라렴."
+        </div>
+
+
+
+        <div class="prose-subtitle">
+          part 2. 초자연 재난
+        </div>
+
+        <p>
+          그 날은 무척 평범한 날이었다.
+          부모님은 일로 인해 집을 비웠고,
+          소녀는 집 안에서 숙제를 하며 동생을 보고 있었다.
+          흐려진 하늘과 스산한 바람,
+          그리고 창문을 닫기 위해 손을 뻗은 순간.
+        </p>
+
+        <div class="quote center red">
+          찾았다.
+        </div>
+
+        <p>
+          그 후로는 소녀에게 기억이 없다.
+          정신을 차려 보니 소녀는 제 동생과 손을 붙잡고
+          어둠 속에서 무언가에 쫓기고 있었다.
+        </p>
+
+        <p>
+          소녀는 어린 동생을 업고 달렸고,
+          부모가 반복적으로 각인시킨 연락처를 떠올려
+          자신을 '해금'이라고 소개했던 이모에게 전화를 건다.
+        </p>
+
+        <div class="quote center">
+          ...해솔이니?
+        </div>
+
+
+
+        <div class="prose-subtitle">
+          part 3. 유년 시절의 끝
+        </div>
+
+        <p>
+          천 년 같은 시간이 흘렀다.
+          소녀는 동생을 끌어안고 숨어 있었고,
+          부모님의 인기척을 느꼈다.
+          그러나 소녀는 이미 주변인의 목소리를 흉내내는 것들을
+          들어온 뒤였다.
+        </p>
+
+        <div class="quote center">
+          -솔음이 손 꼭 잡고 절대, 절대 놓지 마.<br>
+          ...이제부터, 해솔이가 솔음이의 보호자 인거야.
+        </div>
+
+
+
+        <div class="prose-subtitle">
+          part 4. 성장기
+        </div>
+
+        <p>
+          부모님의 장례식장에서,
+          소녀는 세상에 홀로 떨어진 것만 같았다.
+          하지만 검은 옷자락을 붙잡는 작은 손길이 있었다.
+          솔음이었다.
+        </p>
+
+        <div class="quote center">
+          -그럼 누나가 솔음이의 엄마 아빠가 되어주면 되지!
+          <br><br>
+          두 분의 몫을 다 할 순 없겠지만...
+          앞으로, 누나가 솔음이의 엄마 아빠가 되어줄게.
+        </div>
+
+
+
+        <div class="prose-subtitle">
+          part 5. 기로(岐路)
+        </div>
+
+        <p>
+          해솔에게는 한 가지 바람이 있었다.
+          동생이 남들이 평범하게 누리고 꿈꿀 수 있는 것을
+          누렸으면 했다. 안전한 곳에서 평범한 삶의 행복을
+          누릴 수 있었으면 했다.
+        </p>
+
+        <p>
+          소녀는 열여섯이 되어 고등학교 진학을 포기한 채
+          생업에 뛰어들기로 한다. 또 하나의 꿈은,
+          부모님을 비롯해 수많은 이들의 삶을 빼앗았을
+          그 재난을 제 손으로 종결하는 것.
+        </p>
+
+        <div class="quote center">
+          -...이모. 저는 그런 '평범한' 행복을 좇기에는
+          너무 많은 것을 알아 버렸어요.
+          <br>
+          하지만 솔음이는 아니에요.
+          솔음이 만큼은 평범한 삶을 살게 해주고 싶어요.
+          <br><br>
+          후회하지 않아요.
+          뒤 돌아보지도 않을 거예요.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- PERSONALITY -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        06
+      </div>
+
+      <h2 class="section-title">
+        三. 성격
+      </h2>
+
+    </header>
+
+
+    <div class="section-body prose">
+
+
+      <div class="quote">
+        해일 요원님이요?
+        언제나 웃음을 잃지 않은 긍정적인 분이시죠.
+        하지만 보기보다 진지할 땐 또 신경이 많이
+        날카로워 지는 것 같기도 해요.
+        <br><br>
+        -현무 3팀, 요원 G.
+      </div>
+
+
+      <div class="quote">
+        해일이는 겉보기엔 무던해 보이지만
+        예민하고 제 선이 확실한 사람이야.
+        보이는 게 다가 아니라니까.
+        <br><br>
+        -현무 1팀, 요원 C.
+      </div>
+
+
+      <p>
+        <strong>밝고 쾌활하다.</strong>
+      </p>
+
+      <p>
+        시원스럽게 웃는 모습은 늘상 있는 일이었고,
+        해일 요원은 늘 입가에 호선을 그린 채 웃음을 잃지 않는
+        밝고 쾌활한 성격이 두드러진다.
+      </p>
+
+      <p>
+        활기차게 등장하여 유려한 말솜씨로 분위기를 끌어올리고
+        풀어주는 분위기 메이커. 그러나 그 속내는 결코 가볍지 않다.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ITEMS -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        07
+      </div>
+
+      <h2 class="section-title">
+        四. 설정 / 무구, 아이템
+      </h2>
+
+    </header>
+
+
+    <div class="section-body">
+
+
+      <div class="art-grid single">
+
+        <button
+          type="button"
+          class="art-card fit"
+          data-src="../pictures/22.png"
+          data-artist="15님"
+        >
+
+          <img
+            src="../pictures/22.png"
+            alt="사영검 및 설정 일러스트"
+          >
+
+          <div class="art-credit">
+            © 15님
+          </div>
+
+        </button>
+
+      </div>
+
+
+      <div class="prose" style="margin-top:34px;">
+
+        <div class="prose-subtitle">
+          ① 사영검(使靈劍)
+        </div>
+
+        <p>
+          도검류 무구. 신칼의 한 종류인 대신칼을
+          대 재난용으로 오랜 치성을 드려 변형한
+          한 쌍의 중단검.
+        </p>
+
+        <p>
+          각 검 손잡이에는 붉고 푸른 한 쌍의 술이 달려있으며,
+          이는 음과 양의 조화를 상징한다.
+          두 개의 검이 하나의 쌍으로 사용되며 신묘한 힘이
+          깃들어 있어 삿된 것으로 분류되는 괴이/이상현상에
+          물리적으로 타격을 가할 수 있다.
+        </p>
+
+        <p>
+          현재는 그 요원의 자녀인 해일 요원,
+          김해솔이 사용 허가를 받아 패용하고 있다.
+        </p>
+
+
+        <div class="prose-subtitle">
+          ② 붉은 댕기 / 술 귀걸이
+        </div>
+
+        <p>
+          피처럼 진한 붉은 댕기와 오른쪽 귀의 붉은 술 귀걸이는
+          해일 요원의 인상적인 장신구이자 정신 방어용 장비로
+          취급된다.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ADDITIONAL ILLUSTRATION -->
+
+  <section class="profile-section">
+
+    <header class="section-head">
+
+      <div class="section-index">
+        08
+      </div>
+
+      <h2 class="section-title">
+        ADDITIONAL ILLUSTRATION
+      </h2>
+
+    </header>
+
+
+    <div class="section-body">
+
+      <div class="long-images">
+
+
+        <figure class="long-figure">
+
+          <button
+            class="long-image-button"
+            type="button"
+            data-src="../pictures/25.jpg"
+            data-artist="적화님"
+          >
+
+            <img
+              src="../pictures/25.jpg"
+              alt="포도해일 추가 일러스트 1"
+            >
+
+          </button>
+
+          <figcaption class="long-credit">
+            © 적화님
+          </figcaption>
+
+        </figure>
+
+
+        <figure class="long-figure">
+
+          <button
+            class="long-image-button"
+            type="button"
+            data-src="../pictures/26.jpg"
+            data-artist="적화님"
+          >
+
+            <img
+              src="../pictures/26.jpg"
+              alt="포도해일 추가 일러스트 2"
+            >
+
+          </button>
+
+          <figcaption class="long-credit">
+            © 적화님
+          </figcaption>
+
+        </figure>
+
+
+        <figure class="long-figure">
+
+          <button
+            class="long-image-button"
+            type="button"
+            data-src="../pictures/27.jpg"
+            data-artist="적화님"
+          >
+
+            <img
+              src="../pictures/27.jpg"
+              alt="포도해일 추가 일러스트 3"
+            >
+
+          </button>
+
+          <figcaption class="long-credit">
+            © 적화님
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</template>
+
+
+
+<!-- =======================================================
+     IMAGE POPUP
+======================================================= -->
+
+<div
+  class="popup"
+  id="imagePopup"
+  aria-hidden="true"
+>
+
+  <div class="popup-inner">
+
+    <button
+      class="popup-close"
+      id="popupClose"
+      type="button"
+      aria-label="닫기"
+    >
+      ×
+    </button>
+
+    <img
+      class="popup-image"
+      id="popupImage"
+      src=""
+      alt="전체 이미지"
+    >
+
+    <div
+      class="popup-credit"
+      id="popupCredit"
+    ></div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+(() => {
+
+  "use strict";
+
+
+  /* =======================================================
+     PROFILE DATA
+  ======================================================= */
+
+  const DATA = {
+
+    solmyeong: {
+
+      title:
+        "솔명 · PROFILE / 無記錄",
+
+      pair:
+        "솔명",
+
+      label:
+        "PROFILE / 無記錄",
+
+      template:
+        "template-solmyeong",
+
+      password:
+        "nameless0414",
+
+      key:
+        "profile-solmyeong"
+
+    },
+
+
+    podohaeil: {
+
+      title:
+        "포도해일 · PROFILE / 海溢",
+
+      pair:
+        "포도해일",
+
+      label:
+        "PROFILE / 海溢",
+
+      template:
+        "template-podohaeil",
+
+      password:
+        "seawave0414",
+
+      key:
+        "profile-podohaeil"
+
+    }
+
+  };
+
+
+  /* =======================================================
+     ELEMENTS
+  ======================================================= */
+
+  const content =
+    document.getElementById("profileContent");
+
+  const mainLink =
+    document.getElementById("mainLink");
+
+  const profileLink =
+    document.getElementById("profileLink");
+
+  const dreamLink =
+    document.getElementById("dreamLink");
+
+  const homeLink =
+    document.getElementById("homeLink");
+
+  const modeButtons =
+    [...document.querySelectorAll("[data-mode]")];
+
+  const footerLabel =
+    document.getElementById("footerLabel");
+
+
+  /* lock */
+
+  const lockScreen =
+    document.getElementById("lockScreen");
+
+  const lockForm =
+    document.getElementById("lockForm");
+
+  const passwordInput =
+    document.getElementById("passwordInput");
+
+  const lockTitle =
+    document.getElementById("lockTitle");
+
+  const lockText =
+    document.getElementById("lockText");
+
+  const lockError =
+    document.getElementById("lockError");
+
+
+  /* popup */
+
+  const popup =
+    document.getElementById("imagePopup");
+
+  const popupImage =
+    document.getElementById("popupImage");
+
+  const popupCredit =
+    document.getElementById("popupCredit");
+
+  const popupClose =
+    document.getElementById("popupClose");
+
+
+  let currentMode =
+    getInitialMode();
+
+
+  /* =======================================================
+     INITIAL MODE
+  ======================================================= */
+
+  function getInitialMode() {
+
+    const params =
+      new URLSearchParams(
+        location.search
+      );
+
+    const query =
+      params.get("theme") ||
+      params.get("mode");
+
+
+    if (DATA[query]) {
+      return query;
+    }
+
+
+    try {
+
+      const saved =
+        localStorage.getItem(
+          "naru-current-mode"
+        );
+
+      if (DATA[saved]) {
+        return saved;
+      }
+
+    } catch (error) {}
+
+
+    return "solmyeong";
+  }
+
+
+  /* =======================================================
+     PROFILE LOCK
+  ======================================================= */
+
+  function isUnlocked(mode) {
+
+    try {
+
+      return (
+        sessionStorage.getItem(
+          DATA[mode].key
+        ) === "ok"
+      );
+
+    } catch (error) {
+
+      return false;
+
+    }
+
+  }
+
+
+  function rememberUnlock(mode) {
+
+    try {
+
+      sessionStorage.setItem(
+        DATA[mode].key,
+        "ok"
+      );
+
+    } catch (error) {}
+
+  }
+
+
+  function showLock() {
+
+    const data =
+      DATA[currentMode];
+
+    lockTitle.textContent =
+      `${data.pair} Profile`;
+
+    lockText.textContent =
+      `${data.pair} 프로필 비밀번호를 입력해주세요.`;
+
+    lockError.textContent =
+      "";
+
+    passwordInput.value =
+      "";
+
+    lockScreen.hidden =
+      false;
+
+    document.body.style.overflow =
+      "hidden";
+
+    setTimeout(
+      () => passwordInput.focus(),
+      0
+    );
+
+  }
+
+
+  function hideLock() {
+
+    lockScreen.hidden =
+      true;
+
+    document.body.style.overflow =
+      "";
+
+  }
+
+
+  function updateLock() {
+
+    if (
+      isUnlocked(currentMode)
+    ) {
+
+      hideLock();
+
+    } else {
+
+      showLock();
+
+    }
+
+  }
+
+
+  lockForm.addEventListener(
+    "submit",
+    event => {
+
+      event.preventDefault();
+
+      const data =
+        DATA[currentMode];
+
+
+      if (
+        passwordInput.value ===
+        data.password
+      ) {
+
+        rememberUnlock(
+          currentMode
+        );
+
+        hideLock();
+
+        return;
+      }
+
+
+      lockError.textContent =
+        "비밀번호가 틀렸습니다.";
+
+      passwordInput.select();
+
+    }
+  );
+
+
+  /* =======================================================
+     RENDER MODE
+  ======================================================= */
+
+  function renderMode(
+    mode,
+    checkPassword = true
+  ) {
+
+    if (!DATA[mode]) {
+      mode = "solmyeong";
+    }
+
+
+    currentMode =
+      mode;
+
+
+    const data =
+      DATA[mode];
+
+
+    /* browser title */
+
+    document.title =
+      data.title;
+
+
+    /* content */
+
+    const template =
+      document.getElementById(
+        data.template
+      );
+
+    content.innerHTML =
+      template.innerHTML;
+
+
+    /* footer */
+
+    footerLabel.textContent =
+      data.label;
+
+
+    /* links */
+
+    mainLink.href =
+      `../main/?theme=${mode}`;
+
+    profileLink.href =
+      `../profile/?theme=${mode}`;
+
+    dreamLink.href =
+      `../dream/?theme=${mode}`;
+
+    homeLink.href =
+      `../?mode=${mode}`;
+
+
+    /* mode buttons */
+
+    modeButtons.forEach(
+      button => {
+
+        const active =
+          button.dataset.mode === mode;
+
+        button.classList.toggle(
+          "active",
+          active
+        );
+
+
+        /*
+          기존 페이지처럼
+          현재 모드를 왼쪽에 표시
+        */
+
+        button.style.order =
+          active ? "0" : "1";
+
+      }
+    );
+
+
+    /* save */
+
+    try {
+
+      localStorage.setItem(
+        "naru-current-mode",
+        mode
+      );
+
+    } catch (error) {}
+
+
+    /* query */
+
+    const url =
+      new URL(
+        location.href
+      );
+
+    url.searchParams.delete(
+      "mode"
+    );
+
+    url.searchParams.set(
+      "theme",
+      mode
+    );
+
+    history.replaceState(
+      null,
+      "",
+      url
+    );
+
+
+    if (checkPassword) {
+      updateLock();
+    }
+
+  }
+
+
+  /* =======================================================
+     MODE SWITCH
+  ======================================================= */
+
+  modeButtons.forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          const mode =
+            button.dataset.mode;
+
+          if (
+            mode === currentMode
+          ) {
+            return;
+          }
+
+          closePopup();
+
+          renderMode(
+            mode,
+            true
+          );
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
+        }
+      );
+
+    }
+  );
+
+
+  /* =======================================================
+     POPUP
+  ======================================================= */
+
+  function openPopup(
+    src,
+    artist
+  ) {
+
+    popupImage.src =
+      src;
+
+    popupCredit.textContent =
+      artist
+        ? `© ${artist}`
+        : "";
+
+    popup.classList.add(
+      "open"
+    );
+
+    popup.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+  }
+
+
+  function closePopup() {
+
+    popup.classList.remove(
+      "open"
+    );
+
+    popup.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    popupImage.src =
+      "";
+
+  }
+
+
+  /*
+    profileContent 안쪽은
+    mode 변경 때 계속 새로 렌더링되므로
+    event delegation 사용
+  */
+
+  content.addEventListener(
+    "click",
+    event => {
+
+      const target =
+        event.target.closest(
+          "[data-src]"
+        );
+
+      if (!target) {
+        return;
+      }
+
+
+      openPopup(
+        target.dataset.src,
+        target.dataset.artist || ""
+      );
+
+    }
+  );
+
+
+  popupClose.addEventListener(
+    "click",
+    closePopup
+  );
+
+
+  popup.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target === popup
+      ) {
+
+        closePopup();
+
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        closePopup();
+
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     START
+  ======================================================= */
+
+  renderMode(
+    currentMode,
+    true
+  );
+
+})();
+</script>
+
+
+</body>
+</html>
